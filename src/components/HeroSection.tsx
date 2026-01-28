@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 const HeroSection = () => {
-  return <header className="min-h-screen flex flex-col justify-center items-center text-center px-6 relative">
+  return <header className="min-h-screen flex flex-col justify-center items-center text-center relative px-[26px]">
       <motion.div initial={{
       opacity: 0,
       y: 30
