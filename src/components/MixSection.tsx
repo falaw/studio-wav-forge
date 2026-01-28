@@ -65,7 +65,8 @@ const MixSection = () => {
           transition={{ duration: 0.6 }}
           className="text-center"
         >
-          <h2 className="section-header text-foreground">Mix</h2>
+          <h2 className="section-header text-foreground mb-2">Mix</h2>
+          <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground mb-12">Catalog</p>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-10">

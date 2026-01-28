@@ -61,7 +61,8 @@ const PacksSection = () => {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <h2 className="section-header text-foreground">SFX Packs</h2>
+            <h2 className="section-header text-foreground mb-2">SFX Packs</h2>
+            <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground mb-12">Catalog</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
