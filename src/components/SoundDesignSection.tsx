@@ -52,8 +52,8 @@ const SoundDesignSection = () => {
       }} transition={{
         duration: 0.6
       }} className="text-center">
-          <h2 className="section-header text-foreground px-0 mx-0 mb-2">SOUND DESIGN</h2>
-          <p className="text-xs uppercase tracking-[0.4em] text-muted-foreground mb-12">Catalog</p>
+          <h2 className="section-header text-foreground px-0 mx-0 mb-2 py-0">SOUND DESIGN</h2>
+          <p className="uppercase tracking-[0.4em] text-muted-foreground mb-12 text-3xl mx-0 my-0 px-0 py-0">Catalog</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
