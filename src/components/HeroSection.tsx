@@ -43,7 +43,7 @@ const HeroSection = () => {
       }} transition={{
         delay: 0.7,
         duration: 0.8
-      }} className="creative-house uppercase tracking-tighter text-foreground px-0 mx-0 my-[29px]">
+      }} className="creative-house uppercase tracking-tighter text-foreground px-0 mx-0 my-[10px]">
           CREATIVE HOUSE
         </motion.h1>
       </motion.div>
