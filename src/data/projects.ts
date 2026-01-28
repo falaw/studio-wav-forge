@@ -32,18 +32,42 @@ export const soundDesignProjects: Project[] = [
     title: 'Projet #01',
     director: 'REC709VISUEL',
     youtubeUrl: 'https://youtu.be/Ov70T2sRrFw',
+    thumbnail: 'https://img.youtube.com/vi/Ov70T2sRrFw/maxresdefault.jpg',
   },
   {
     id: 'project-02',
     title: 'Projet #02',
     director: 'MassimoVisual',
     youtubeUrl: 'https://youtu.be/fKvJDVlzuOE',
+    thumbnail: 'https://img.youtube.com/vi/fKvJDVlzuOE/maxresdefault.jpg',
   },
   {
     id: 'project-03',
     title: 'Projet #03',
+    director: 'Harris Kaci',
+    youtubeUrl: 'https://youtu.be/_xuNmoJEoIM',
+    thumbnail: 'https://img.youtube.com/vi/_xuNmoJEoIM/maxresdefault.jpg',
+  },
+  {
+    id: 'project-04',
+    title: 'Projet #04',
     director: 'REC709VISUEL',
     youtubeUrl: 'https://youtu.be/Ch1qGpWWZ5Q',
+    thumbnail: 'https://img.youtube.com/vi/Ch1qGpWWZ5Q/maxresdefault.jpg',
+  },
+  {
+    id: 'project-05',
+    title: 'Projet #05',
+    director: 'REC709VISUEL',
+    youtubeUrl: 'https://youtu.be/Uhmg30gpTiQ',
+    thumbnail: 'https://img.youtube.com/vi/Uhmg30gpTiQ/maxresdefault.jpg',
+  },
+  {
+    id: 'project-06',
+    title: 'Projet #06',
+    director: 'MassimoVisual',
+    youtubeUrl: 'https://youtu.be/yua5F80KcPw',
+    thumbnail: 'https://img.youtube.com/vi/yua5F80KcPw/maxresdefault.jpg',
   },
 ];
 

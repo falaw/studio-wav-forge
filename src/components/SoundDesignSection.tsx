@@ -25,9 +25,17 @@ const WorkCard = ({ project, index }: WorkCardProps) => {
             Regarder le clip <ExternalLink size={14} />
           </span>
         </div>
-        <div className="w-full h-full bg-muted flex items-center justify-center text-4xl group-hover:scale-110 transition-transform duration-700">
-          🎬
-        </div>
+        {project.thumbnail ? (
+          <img 
+            src={project.thumbnail} 
+            alt={project.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+        ) : (
+          <div className="w-full h-full bg-muted flex items-center justify-center text-4xl group-hover:scale-110 transition-transform duration-700">
+            🎬
+          </div>
+        )}
       </div>
       <h3 className="text-xl font-bold italic text-foreground">{project.title}</h3>
       <p className="text-muted-foreground text-sm mt-1 uppercase tracking-tighter">
