@@ -29,7 +29,7 @@ export interface Pack {
 export const soundDesignProjects: Project[] = [
   {
     id: 'project-01',
-    title: 'Projet #01',
+    title: '2Pit feat Evil P - ICE O LATOR',
     director: 'REC709VISUEL',
     youtubeUrl: 'https://youtu.be/Ov70T2sRrFw',
     thumbnail: 'https://img.youtube.com/vi/Ov70T2sRrFw/maxresdefault.jpg',
