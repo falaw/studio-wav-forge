@@ -9,9 +9,10 @@ export interface Project {
 export interface MixProject {
   id: string;
   title: string;
+  artist: string;
   type: 'single' | 'playlist' | 'album';
   youtubeUrl: string;
-  thumbnail?: string;
+  thumbnail: string;
 }
 
 export interface Pack {
@@ -74,27 +75,35 @@ export const soundDesignProjects: Project[] = [
 export const mixProjects: MixProject[] = [
   {
     id: 'mix-01',
-    title: 'Projet Mix #01',
+    title: 'FAFREDDO FREESTYLE',
+    artist: 'Calmé Zuu',
     type: 'single',
     youtubeUrl: 'https://youtu.be/VzU5r5hJ_cY',
+    thumbnail: 'https://img.youtube.com/vi/VzU5r5hJ_cY/maxresdefault.jpg',
   },
   {
     id: 'mix-02',
-    title: 'Album / EP Mix',
+    title: 'G-TOWN (EP)',
+    artist: 'Zuu',
     type: 'playlist',
     youtubeUrl: 'https://youtube.com/playlist?list=OLAK5uy_lxmFJ_7JBZfh7glNerZcmEzpcA8mnqCcU',
+    thumbnail: 'https://img.youtube.com/vi/7pKrVB5f2W0/maxresdefault.jpg',
   },
   {
     id: 'mix-03',
-    title: 'Projet Mix #03',
+    title: 'ROCKSTAR',
+    artist: 'Alamelooo',
     type: 'single',
     youtubeUrl: 'https://youtu.be/rzwMJ3JBP3M',
+    thumbnail: 'https://img.youtube.com/vi/rzwMJ3JBP3M/maxresdefault.jpg',
   },
   {
     id: 'mix-04',
-    title: 'Projet Mix #04',
+    title: 'JOJO',
+    artist: 'Alamelooo',
     type: 'single',
     youtubeUrl: 'https://youtu.be/YVGms99zbZM',
+    thumbnail: 'https://img.youtube.com/vi/YVGms99zbZM/maxresdefault.jpg',
   },
 ];
 
