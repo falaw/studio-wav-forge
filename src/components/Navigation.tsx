@@ -14,7 +14,14 @@ const Navigation = () => {
       transition={{ duration: 0.6, delay: 0.5 }}
       className="fixed top-0 w-full z-40 p-6 flex justify-between items-center blend-difference"
     >
-      <a href="#" className="font-black text-xl tracking-tighter uppercase text-foreground">
+      <a 
+        href="#main-content" 
+        onClick={(e) => {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+        className="font-black text-xl tracking-tighter uppercase text-foreground cursor-pointer"
+      >
         SW.
       </a>
 
