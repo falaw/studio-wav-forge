@@ -1,11 +1,27 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { navigationLinks } from '@/data/projects';
+import useAudio from '@/hooks/useAudio';
 
-const Navigation = () => {
+interface NavigationProps {
+  onLogoClick?: () => void;
+}
+
+const Navigation = ({ onLogoClick }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { playExitSFX } = useAudio();
+
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (onLogoClick) {
+      playExitSFX();
+      onLogoClick();
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <motion.nav
@@ -14,16 +30,14 @@ const Navigation = () => {
       transition={{ duration: 0.6, delay: 0.5 }}
       className="fixed top-0 w-full z-40 p-6 flex justify-between items-center blend-difference"
     >
-      <a 
-        href="#main-content" 
-        onClick={(e) => {
-          e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
-        className="font-black text-xl tracking-tighter uppercase text-foreground cursor-pointer"
+      <motion.button
+        onClick={handleLogoClick}
+        className="font-black text-xl tracking-tighter uppercase text-foreground cursor-pointer bg-transparent border-none focus:outline-none"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
       >
         SW.
-      </a>
+      </motion.button>
 
       {/* Desktop Navigation */}
       <div className="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-foreground">
