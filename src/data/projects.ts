@@ -1,4 +1,6 @@
 import lplmCover from '@/assets/LPLM.webp';
+import rockstarCover from '@/assets/rockstar.webp';
+import jojoCover from '@/assets/JOJO.webp';
 
 export interface Project {
   id: string;
@@ -97,7 +99,7 @@ export const mixProjects: MixProject[] = [
     artist: 'Alamelooo',
     type: 'single',
     youtubeUrl: 'https://youtu.be/rzwMJ3JBP3M',
-    thumbnail: 'https://img.youtube.com/vi/rzwMJ3JBP3M/maxresdefault.jpg',
+    thumbnail: rockstarCover,
   },
   {
     id: 'mix-04',
@@ -105,7 +107,7 @@ export const mixProjects: MixProject[] = [
     artist: 'Alamelooo',
     type: 'single',
     youtubeUrl: 'https://youtu.be/YVGms99zbZM',
-    thumbnail: 'https://img.youtube.com/vi/YVGms99zbZM/maxresdefault.jpg',
+    thumbnail: jojoCover,
   },
 ];
 
