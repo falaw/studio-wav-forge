@@ -1,3 +1,5 @@
+import lplmCover from '@/assets/LPLM.webp';
+
 export interface Project {
   id: string;
   title: string;
@@ -83,11 +85,11 @@ export const mixProjects: MixProject[] = [
   },
   {
     id: 'mix-02',
-    title: 'G-TOWN (EP)',
-    artist: 'Zuu',
+    title: 'LPLM',
+    artist: 'Calmé Zuu',
     type: 'playlist',
     youtubeUrl: 'https://youtube.com/playlist?list=OLAK5uy_lxmFJ_7JBZfh7glNerZcmEzpcA8mnqCcU',
-    thumbnail: 'https://img.youtube.com/vi/7pKrVB5f2W0/maxresdefault.jpg',
+    thumbnail: lplmCover,
   },
   {
     id: 'mix-03',
