@@ -111,26 +111,6 @@ const SplashScreen = ({
                 >
                   SW.
                 </motion.span>
-                
-                {/* Indicateur de progression subtil (optionnel) */}
-                <motion.div
-                  className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-1"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0.3 }}
-                  transition={{ delay: 1 }}
-                >
-                  {Array.from({ length: totalSounds }).map((_, i) => (
-                    <motion.span
-                      key={i}
-                      className="w-1 h-1 rounded-full bg-foreground"
-                      animate={{
-                        opacity: i === currentSoundIndex ? 1 : 0.3,
-                        scale: i === currentSoundIndex ? 1.2 : 1,
-                      }}
-                      transition={{ duration: 0.2 }}
-                    />
-                  ))}
-                </motion.div>
               </motion.button>
 
               {/* Subtitle */}
@@ -142,6 +122,26 @@ const SplashScreen = ({
               >
                 Creative House
               </motion.p>
+
+              {/* Indicateur de progression des sons */}
+              <motion.div
+                className="mt-4 flex gap-1"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 0.3 }}
+                transition={{ delay: 0.5 }}
+              >
+                {Array.from({ length: totalSounds }).map((_, i) => (
+                  <motion.span
+                    key={i}
+                    className="w-1 h-1 rounded-full bg-foreground"
+                    animate={{
+                      opacity: i === currentSoundIndex ? 1 : 0.3,
+                      scale: i === currentSoundIndex ? 1.2 : 1,
+                    }}
+                    transition={{ duration: 0.2 }}
+                  />
+                ))}
+              </motion.div>
 
               {/* Enter Button - Rounded full */}
               <motion.button
