@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
-import useAudio from '@/hooks/useAudio';
 import useSequentialAudio from '@/hooks/useSequentialAudio';
 
 interface SplashScreenProps {
@@ -13,8 +12,7 @@ const SplashScreen = ({
   isEntering = false
 }: SplashScreenProps) => {
   const [isExiting, setIsExiting] = useState(false);
-  const { playEnterSFX } = useAudio();
-  const { playNextSound, currentSoundIndex, totalSounds } = useSequentialAudio();
+  const { playNextSound, playTransitionSound, currentSoundIndex, totalSounds, transitionDuration } = useSequentialAudio();
   const logoControls = useAnimation();
 
   // Feedback visuel synchronisé avec le son
@@ -40,12 +38,13 @@ const SplashScreen = ({
 
   const handleEnter = () => {
     setIsExiting(true);
-    playEnterSFX();
+    // Jouer le son de transition (coupe les sons du logo)
+    playTransitionSound();
 
-    // Delay the actual transition to allow animation to play
+    // Synchroniser la transition avec la durée du son
     setTimeout(() => {
       onEnter();
-    }, 1000);
+    }, transitionDuration);
   };
 
   const showContent = !isExiting && !isEntering;
@@ -68,7 +67,7 @@ const SplashScreen = ({
           y: -100
         }}
         transition={{
-          duration: 0.8,
+          duration: transitionDuration / 1000, // Synchronisé avec le son
           ease: [0.76, 0, 0.24, 1]
         }}
       >
@@ -175,13 +174,16 @@ const SplashScreen = ({
           )}
         </AnimatePresence>
 
-        {/* Exit curtain animation */}
+        {/* Exit curtain animation - synchronisé avec le son */}
         {isExiting && (
           <motion.div
             className="absolute inset-0 bg-background z-20"
             initial={{ scaleY: 0, originY: 0 }}
             animate={{ scaleY: 1 }}
-            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ 
+              duration: transitionDuration / 1000, 
+              ease: [0.76, 0, 0.24, 1] 
+            }}
           />
         )}
       </motion.div>
