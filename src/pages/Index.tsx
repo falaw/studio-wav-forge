@@ -10,11 +10,13 @@ import PacksSection from '@/components/PacksSection';
 import Footer from '@/components/Footer';
 import SplashScreen from '@/components/SplashScreen';
 import useBackgroundMusic from '@/hooks/useBackgroundMusic';
+import useSequentialAudio from '@/hooks/useSequentialAudio';
 
 const Index = () => {
   const [showSplash, setShowSplash] = useState(true);
   const [isEnteringSplash, setIsEnteringSplash] = useState(false);
   const { startMusic, stopMusic } = useBackgroundMusic();
+  const { resetSequence } = useSequentialAudio();
 
   // Handle browser back button - don't show splash again on refresh
   useEffect(() => {
@@ -42,8 +44,11 @@ const Index = () => {
   };
 
   const handleReturnToSplash = () => {
-    // Fade-out de la musique
-    stopMusic(false);
+    // Fade-out RAPIDE de la musique (300ms)
+    stopMusic(false, true);
+    
+    // Réinitialiser la séquence audio du logo
+    resetSequence();
     
     setIsEnteringSplash(true);
     // Small delay for exit animation

@@ -1,7 +1,11 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useEffect } from 'react';
+
+// Exit SFX file path
+export const EXIT_SITE_SFX = '/sounds/transiSWSD_reverse.wav';
 
 // Web Audio API context - shared instance
 let audioContext: AudioContext | null = null;
+let exitAudioElement: HTMLAudioElement | null = null;
 
 const getAudioContext = () => {
   if (!audioContext) {
@@ -21,6 +25,15 @@ const clickSFXConfigs = [
 
 export const useAudio = () => {
   const isInitialized = useRef(false);
+
+  // Précharger le son de sortie
+  useEffect(() => {
+    if (!exitAudioElement) {
+      exitAudioElement = new Audio(EXIT_SITE_SFX);
+      exitAudioElement.preload = 'auto';
+      exitAudioElement.volume = 0.7;
+    }
+  }, []);
 
   const ensureContext = useCallback(() => {
     const ctx = getAudioContext();
@@ -94,38 +107,13 @@ export const useAudio = () => {
     osc2.stop(ctx.currentTime + duration);
   }, [ensureContext]);
 
-  // Play exit/close SFX (reverse whoosh)
+  // Play exit SFX using the real audio file
   const playExitSFX = useCallback(() => {
-    const ctx = ensureContext();
-    const duration = 0.8;
-
-    // Rising tone
-    const osc1 = ctx.createOscillator();
-    const gain1 = ctx.createGain();
-    osc1.connect(gain1);
-    gain1.connect(ctx.destination);
-    osc1.frequency.setValueAtTime(100, ctx.currentTime);
-    osc1.frequency.exponentialRampToValueAtTime(300, ctx.currentTime + duration);
-    osc1.type = 'sine';
-    gain1.gain.setValueAtTime(0.3, ctx.currentTime);
-    gain1.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
-
-    // High ping
-    const osc2 = ctx.createOscillator();
-    const gain2 = ctx.createGain();
-    osc2.connect(gain2);
-    gain2.connect(ctx.destination);
-    osc2.frequency.setValueAtTime(600, ctx.currentTime);
-    osc2.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + duration * 0.5);
-    osc2.type = 'triangle';
-    gain2.gain.setValueAtTime(0.2, ctx.currentTime);
-    gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration * 0.5);
-
-    osc1.start(ctx.currentTime);
-    osc1.stop(ctx.currentTime + duration);
-    osc2.start(ctx.currentTime);
-    osc2.stop(ctx.currentTime + duration * 0.5);
-  }, [ensureContext]);
+    if (exitAudioElement) {
+      exitAudioElement.currentTime = 0;
+      exitAudioElement.play().catch(console.warn);
+    }
+  }, []);
 
   return {
     playClickSFX,

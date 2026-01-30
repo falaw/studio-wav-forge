@@ -3,6 +3,7 @@ import { useCallback, useRef, useEffect, useState } from 'react';
 // Configuration
 export const BACKGROUND_MUSIC_PATH = '/sounds/musicsw1.mp3';
 export const FADE_DURATION_MS = 1000;
+export const FAST_FADE_DURATION_MS = 300; // Fade-out rapide pour le retour au splash
 const DEFAULT_VOLUME = 0.3;
 
 // Singleton pour persister l'audio entre les rendus
@@ -77,7 +78,7 @@ export const useBackgroundMusic = () => {
   }, [clearFadeInterval]);
 
   // Fade-out progressif
-  const fadeOut = useCallback((callback?: () => void) => {
+  const fadeOut = useCallback((callback?: () => void, fast = false) => {
     if (!audioInstance) {
       callback?.();
       return;
@@ -85,9 +86,10 @@ export const useBackgroundMusic = () => {
     
     clearFadeInterval();
     
+    const duration = fast ? FAST_FADE_DURATION_MS : FADE_DURATION_MS;
     const startVolume = audioInstance.volume;
-    const steps = 50;
-    const stepDuration = FADE_DURATION_MS / steps;
+    const steps = fast ? 15 : 50;
+    const stepDuration = duration / steps;
     const volumeStep = startVolume / steps;
     
     let currentStep = 0;
@@ -118,14 +120,14 @@ export const useBackgroundMusic = () => {
   }, [fadeIn]);
 
   // Arrêter la musique (avec fade-out)
-  const stopMusic = useCallback((immediate = false) => {
+  const stopMusic = useCallback((immediate = false, fast = false) => {
     if (!audioInstance) return;
     
     if (immediate) {
       audioInstance.pause();
       audioInstance.currentTime = 0;
     } else {
-      fadeOut();
+      fadeOut(undefined, fast);
     }
   }, [fadeOut]);
 
