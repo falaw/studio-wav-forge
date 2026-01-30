@@ -17,10 +17,15 @@ export const SOUND_FILES = [
   '/sounds/12bon_aller_on_se_le_refait.wav',
 ];
 
+// Son de transition (révélation du site)
+export const TRANSITION_SFX = '/sounds/transiSWSD2.wav';
+export const TRANSITION_DURATION_MS = 2000; // Durée en ms - ajustable selon le fichier audio
+
 export const useSequentialAudio = () => {
   const [currentSoundIndex, setCurrentSoundIndex] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const audioRefs = useRef<HTMLAudioElement[]>([]);
+  const transitionAudioRef = useRef<HTMLAudioElement | null>(null);
   const isPlayingRef = useRef(false);
 
   // Pré-chargement des fichiers audio
@@ -28,6 +33,11 @@ export const useSequentialAudio = () => {
     const preloadAudio = async () => {
       const audioElements: HTMLAudioElement[] = [];
       
+      // Pré-charger le son de transition
+      const transitionAudio = new Audio(TRANSITION_SFX);
+      transitionAudio.preload = 'auto';
+      transitionAudio.volume = 0.7; // Volume dominant
+      transitionAudioRef.current = transitionAudio;
       for (const soundPath of SOUND_FILES) {
         const audio = new Audio(soundPath);
         audio.preload = 'auto';
@@ -95,6 +105,21 @@ export const useSequentialAudio = () => {
     return false;
   }, [isReady, currentSoundIndex]);
 
+  // Jouer le son de transition (coupe les autres sons)
+  const playTransitionSound = useCallback(() => {
+    // Couper tous les sons séquentiels en cours
+    audioRefs.current.forEach(audio => {
+      audio.pause();
+      audio.currentTime = 0;
+    });
+    
+    // Jouer le son de transition
+    if (transitionAudioRef.current) {
+      transitionAudioRef.current.currentTime = 0;
+      transitionAudioRef.current.play().catch(console.warn);
+    }
+  }, []);
+
   // Réinitialiser la séquence
   const resetSequence = useCallback(() => {
     setCurrentSoundIndex(0);
@@ -102,10 +127,12 @@ export const useSequentialAudio = () => {
 
   return {
     playNextSound,
+    playTransitionSound,
     resetSequence,
     currentSoundIndex,
     totalSounds: SOUND_FILES.length,
     isReady,
+    transitionDuration: TRANSITION_DURATION_MS,
   };
 };
 
