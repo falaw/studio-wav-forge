@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useCallback } from 'react';
+import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import useAudio from '@/hooks/useAudio';
+import useSequentialAudio from '@/hooks/useSequentialAudio';
 
 interface SplashScreenProps {
   onEnter: () => void;
@@ -12,11 +13,30 @@ const SplashScreen = ({
   isEntering = false
 }: SplashScreenProps) => {
   const [isExiting, setIsExiting] = useState(false);
-  const { playClickSFX, playEnterSFX } = useAudio();
+  const { playEnterSFX } = useAudio();
+  const { playNextSound, currentSoundIndex, totalSounds } = useSequentialAudio();
+  const logoControls = useAnimation();
 
-  const handleLogoClick = () => {
-    playClickSFX();
-  };
+  // Feedback visuel synchronisé avec le son
+  const triggerVisualFeedback = useCallback(async () => {
+    // Animation de "pulse" subtile
+    await logoControls.start({
+      scale: [1, 1.08, 0.97, 1.02, 1],
+      rotate: [0, -1, 1, -0.5, 0],
+      transition: {
+        duration: 0.35,
+        ease: [0.25, 0.1, 0.25, 1],
+        times: [0, 0.2, 0.5, 0.75, 1]
+      }
+    });
+  }, [logoControls]);
+
+  const handleLogoClick = useCallback(() => {
+    // Jouer le son séquentiel
+    playNextSound();
+    // Déclencher le feedback visuel
+    triggerVisualFeedback();
+  }, [playNextSound, triggerVisualFeedback]);
 
   const handleEnter = () => {
     setIsExiting(true);
@@ -69,15 +89,16 @@ const SplashScreen = ({
               transition={{ duration: 0.6, ease: 'easeOut' }}
               className="relative z-10 flex flex-col items-center"
             >
-              {/* Interactive Logo - Clean with subtle scale */}
+              {/* Interactive Logo - Sequential audio with visual feedback */}
               <motion.button
                 onClick={handleLogoClick}
                 className="relative cursor-pointer select-none focus:outline-none group"
                 whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
+                whileTap={{ scale: 0.95 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
               >
                 <motion.span
+                  animate={logoControls}
                   className="block font-black text-foreground relative"
                   style={{
                     fontSize: 'clamp(6rem, 25vw, 16rem)',
@@ -90,6 +111,26 @@ const SplashScreen = ({
                 >
                   SW.
                 </motion.span>
+                
+                {/* Indicateur de progression subtil (optionnel) */}
+                <motion.div
+                  className="absolute -bottom-4 left-1/2 -translate-x-1/2 flex gap-1"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0.3 }}
+                  transition={{ delay: 1 }}
+                >
+                  {Array.from({ length: totalSounds }).map((_, i) => (
+                    <motion.span
+                      key={i}
+                      className="w-1 h-1 rounded-full bg-foreground"
+                      animate={{
+                        opacity: i === currentSoundIndex ? 1 : 0.3,
+                        scale: i === currentSoundIndex ? 1.2 : 1,
+                      }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  ))}
+                </motion.div>
               </motion.button>
 
               {/* Subtitle */}
