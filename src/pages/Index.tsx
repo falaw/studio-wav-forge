@@ -9,10 +9,12 @@ import MixSection from '@/components/MixSection';
 import PacksSection from '@/components/PacksSection';
 import Footer from '@/components/Footer';
 import SplashScreen from '@/components/SplashScreen';
+import useBackgroundMusic from '@/hooks/useBackgroundMusic';
 
 const Index = () => {
   const [showSplash, setShowSplash] = useState(true);
   const [isEnteringSplash, setIsEnteringSplash] = useState(false);
+  const { startMusic, stopMusic } = useBackgroundMusic();
 
   // Handle browser back button - don't show splash again on refresh
   useEffect(() => {
@@ -22,6 +24,17 @@ const Index = () => {
     }
   }, []);
 
+  // Démarrer la musique quand le site principal est affiché
+  useEffect(() => {
+    if (!showSplash && !isEnteringSplash) {
+      // Petit délai pour laisser la transition se terminer
+      const timer = setTimeout(() => {
+        startMusic();
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [showSplash, isEnteringSplash, startMusic]);
+
   const handleEnterSite = () => {
     sessionStorage.setItem('hasVisitedSplash', 'true');
     setShowSplash(false);
@@ -29,6 +42,9 @@ const Index = () => {
   };
 
   const handleReturnToSplash = () => {
+    // Fade-out de la musique
+    stopMusic(false);
+    
     setIsEnteringSplash(true);
     // Small delay for exit animation
     setTimeout(() => {
