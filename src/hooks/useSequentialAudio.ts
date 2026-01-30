@@ -1,13 +1,18 @@
 import { useCallback, useRef, useEffect, useState } from 'react';
 
-// Configuration des fichiers audio - À remplir avec vos fichiers .wav
-// Les fichiers doivent être placés dans /public/sounds/
+// Configuration des fichiers audio officiels
+// Les fichiers sont placés dans /public/sounds/
 export const SOUND_FILES = [
-  '/sounds/click-01.wav',
-  '/sounds/click-02.wav',
-  '/sounds/click-03.wav',
-  '/sounds/click-04.wav',
-  '/sounds/click-05.wav',
+  '/sounds/01SoundSW.wav',
+  '/sounds/02SoundSW.wav',
+  '/sounds/03SoundSW.wav',
+  '/sounds/04la_c_est_que_ma_bouche.wav',
+  '/sounds/05SoundSW.wav',
+  '/sounds/06SoundSW.wav',
+  '/sounds/07aller_rentre.wav',
+  '/sounds/08SoundSW.wav',
+  '/sounds/09ça_t_amuse.wav',
+  '/sounds/10viens_voir_mon_travail_jsp.wav',
 ];
 
 export const useSequentialAudio = () => {
