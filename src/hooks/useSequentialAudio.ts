@@ -19,7 +19,16 @@ export const SOUND_FILES = [
 
 // Son de transition (révélation du site)
 export const TRANSITION_SFX = '/sounds/transiSWSD2.wav';
-export const TRANSITION_DURATION_MS = 2000; // Durée en ms - ajustable selon le fichier audio
+
+// === TIMING CONFIGURATION (ajustable) ===
+// Durée totale du son de transition en ms
+export const TRANSITION_AUDIO_DURATION_MS = 3500;
+// Délai avant de révéler le site (pour synchroniser avec "Studiowav")
+export const SITE_REVEAL_DELAY_MS = 1800;
+// Durée de l'animation de zoom du logo
+export const LOGO_ZOOM_DURATION_MS = 2000;
+// Durée du fade-out du logo après le zoom
+export const LOGO_FADE_DURATION_MS = 800;
 
 export const useSequentialAudio = () => {
   const [currentSoundIndex, setCurrentSoundIndex] = useState(0);
@@ -132,7 +141,6 @@ export const useSequentialAudio = () => {
     currentSoundIndex,
     totalSounds: SOUND_FILES.length,
     isReady,
-    transitionDuration: TRANSITION_DURATION_MS,
   };
 };
 

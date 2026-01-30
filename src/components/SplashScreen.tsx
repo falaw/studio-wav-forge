@@ -1,6 +1,11 @@
 import { useState, useCallback } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
-import useSequentialAudio from '@/hooks/useSequentialAudio';
+import useSequentialAudio, { 
+  SITE_REVEAL_DELAY_MS, 
+  LOGO_ZOOM_DURATION_MS, 
+  LOGO_FADE_DURATION_MS,
+  TRANSITION_AUDIO_DURATION_MS 
+} from '@/hooks/useSequentialAudio';
 
 interface SplashScreenProps {
   onEnter: () => void;
@@ -12,7 +17,8 @@ const SplashScreen = ({
   isEntering = false
 }: SplashScreenProps) => {
   const [isExiting, setIsExiting] = useState(false);
-  const { playNextSound, playTransitionSound, currentSoundIndex, totalSounds, transitionDuration } = useSequentialAudio();
+  const [showOverlay, setShowOverlay] = useState(true);
+  const { playNextSound, playTransitionSound, currentSoundIndex, totalSounds } = useSequentialAudio();
   const logoControls = useAnimation();
 
   // Feedback visuel synchronisé avec le son
@@ -36,38 +42,66 @@ const SplashScreen = ({
     triggerVisualFeedback();
   }, [playNextSound, triggerVisualFeedback]);
 
-  const handleEnter = () => {
+  const handleEnter = async () => {
     setIsExiting(true);
     // Jouer le son de transition (coupe les sons du logo)
     playTransitionSound();
 
-    // Synchroniser la transition avec la durée du son
+    // Lancer l'animation de zoom du logo
+    logoControls.start({
+      scale: 15,
+      opacity: 0,
+      transition: {
+        scale: { 
+          duration: LOGO_ZOOM_DURATION_MS / 1000, 
+          ease: [0.76, 0, 0.24, 1] 
+        },
+        opacity: { 
+          duration: LOGO_FADE_DURATION_MS / 1000, 
+          delay: (LOGO_ZOOM_DURATION_MS - LOGO_FADE_DURATION_MS) / 1000,
+          ease: 'easeOut' 
+        }
+      }
+    });
+
+    // Révéler le site au moment de "Studiowav" dans l'audio
     setTimeout(() => {
       onEnter();
-    }, transitionDuration);
+    }, SITE_REVEAL_DELAY_MS);
+
+    // Retirer l'overlay après que l'audio soit terminé
+    setTimeout(() => {
+      setShowOverlay(false);
+    }, TRANSITION_AUDIO_DURATION_MS);
   };
 
   const showContent = !isExiting && !isEntering;
+
+  // Ne pas rendre si l'overlay n'est plus nécessaire
+  if (!showOverlay && !showContent && !isExiting) {
+    return null;
+  }
 
   return (
     <AnimatePresence mode="wait">
       <motion.div
         key="splash-container"
-        className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background overflow-hidden"
+        className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-background overflow-hidden pointer-events-auto"
         initial={{
           opacity: isEntering ? 0 : 1,
           y: isEntering ? -50 : 0
         }}
         animate={{
-          opacity: 1,
-          y: 0
+          opacity: isExiting ? 0 : 1,
+          y: 0,
+          pointerEvents: isExiting ? 'none' : 'auto'
         }}
         exit={{
           opacity: 0,
           y: -100
         }}
         transition={{
-          duration: transitionDuration / 1000, // Synchronisé avec le son
+          duration: LOGO_ZOOM_DURATION_MS / 1000,
           ease: [0.76, 0, 0.24, 1]
         }}
       >
@@ -88,7 +122,7 @@ const SplashScreen = ({
               transition={{ duration: 0.6, ease: 'easeOut' }}
               className="relative z-10 flex flex-col items-center"
             >
-              {/* Interactive Logo - Sequential audio with visual feedback */}
+              {/* Interactive Logo - Sequential audio with visual feedback + Zoom transition */}
               <motion.button
                 onClick={handleLogoClick}
                 className="relative cursor-pointer select-none focus:outline-none group"
@@ -98,15 +132,17 @@ const SplashScreen = ({
               >
                 <motion.span
                   animate={logoControls}
+                  initial={{ scale: 1, opacity: 1 }}
                   className="block font-black text-foreground relative"
                   style={{
                     fontSize: 'clamp(6rem, 25vw, 16rem)',
                     lineHeight: 0.85,
-                    letterSpacing: '-0.05em'
+                    letterSpacing: '-0.05em',
+                    transformOrigin: 'center center'
                   }}
-                  whileHover={{
+                  whileHover={!isExiting ? {
                     textShadow: '0 0 60px rgba(255,255,255,0.4)'
-                  }}
+                  } : undefined}
                 >
                   SW.
                 </motion.span>
@@ -174,15 +210,16 @@ const SplashScreen = ({
           )}
         </AnimatePresence>
 
-        {/* Exit curtain animation - synchronisé avec le son */}
+        {/* Background fade pour révéler le site derrière */}
         {isExiting && (
           <motion.div
-            className="absolute inset-0 bg-background z-20"
-            initial={{ scaleY: 0, originY: 0 }}
-            animate={{ scaleY: 1 }}
+            className="absolute inset-0 bg-background z-10"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 0 }}
             transition={{ 
-              duration: transitionDuration / 1000, 
-              ease: [0.76, 0, 0.24, 1] 
+              duration: LOGO_ZOOM_DURATION_MS / 1000, 
+              ease: [0.76, 0, 0.24, 1],
+              delay: 0.2
             }}
           />
         )}
