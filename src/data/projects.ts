@@ -1,6 +1,7 @@
 import lplmCover from '@/assets/LPLM.webp';
 import rockstarCover from '@/assets/rockstar.webp';
 import jojoCover from '@/assets/JOJO.webp';
+import packzieuCover from '@/assets/packzieu-cover.jpg';
 
 export interface Project {
   id: string;
@@ -25,10 +26,12 @@ export interface Pack {
   price: string;
   isFree: boolean;
   badge: string;
-  icon: string;
+  icon?: string;
+  coverImage?: string;
   description: string;
   sampleCount: string;
   audioPreviewUrl?: string;
+  downloadUrl?: string;
 }
 
 export const soundDesignProjects: Project[] = [
@@ -113,14 +116,15 @@ export const mixProjects: MixProject[] = [
 
 export const sfxPacks: Pack[] = [
   {
-    id: 'cinematic-textures',
-    title: 'Cinematic Textures',
-    price: '25.00€',
-    isFree: false,
-    badge: 'Premium',
-    icon: '📦',
-    description: 'Un pack complet de textures atmosphériques pour vos productions visuelles. Haute qualité, 24-bit WAV, prêt pour l\'industrie.',
+    id: 'packzieu',
+    title: 'PACKZIEU',
+    price: 'GRATUIT',
+    isFree: true,
+    badge: 'GRATUIT',
+    coverImage: packzieuCover,
+    description: 'Pack SFX 2026 par StudioWav. Textures, Whoosh, Flash, Paper, Riser. Haute qualité, 24-bit WAV, prêt pour l\'industrie.',
     sampleCount: '50+ Samples',
+    downloadUrl: '/downloads/SW_PackSFX_ZieuFilm_@falaw.rar',
   },
   {
     id: 'analog-hits',
