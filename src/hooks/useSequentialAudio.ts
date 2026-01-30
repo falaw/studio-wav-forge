@@ -13,6 +13,8 @@ export const SOUND_FILES = [
   '/sounds/08SoundSW.wav',
   '/sounds/09ça_t_amuse.wav',
   '/sounds/10viens_voir_mon_travail_jsp.wav',
+  '/sounds/11t_es_encore_la.wav',
+  '/sounds/12bon_aller_on_se_le_refait.wav',
 ];
 
 export const useSequentialAudio = () => {
