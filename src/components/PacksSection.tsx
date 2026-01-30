@@ -12,42 +12,47 @@ const PackCard = ({
   index,
   onClick
 }: PackCardProps) => {
-  return <motion.div initial={{
-    opacity: 0,
-    y: 30
-  }} whileInView={{
-    opacity: 1,
-    y: 0
-  }} viewport={{
-    once: true,
-    margin: '-50px'
-  }} transition={{
-    duration: 0.6,
-    delay: index * 0.1
-  }} onClick={onClick} className="pack-card cursor-pointer group">
+  return (
+    <motion.div 
+      initial={{ opacity: 0, y: 30 }} 
+      whileInView={{ opacity: 1, y: 0 }} 
+      viewport={{ once: true, margin: '-50px' }} 
+      transition={{ duration: 0.6, delay: index * 0.1 }} 
+      onClick={onClick} 
+      className="pack-card cursor-pointer group rounded-3xl overflow-hidden"
+    >
       {/* Image Container */}
-      <div className="aspect-square bg-background flex items-center justify-center relative">
+      <div className="aspect-square bg-background flex items-center justify-center relative overflow-hidden rounded-t-3xl">
         <span className="pack-badge">{pack.badge}</span>
-        <div className="text-6xl group-hover:scale-110 transition-transform duration-500 text-foreground">
-          {pack.icon}
-        </div>
+        {pack.coverImage ? (
+          <img 
+            src={pack.coverImage} 
+            alt={pack.title} 
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+        ) : (
+          <div className="text-6xl group-hover:scale-110 transition-transform duration-500 text-foreground">
+            {pack.icon}
+          </div>
+        )}
       </div>
 
       {/* Info */}
-      <div className="p-6 border-t border-foreground/5 bg-studio-card">
+      <div className="p-6 border-t border-foreground/5 bg-studio-card rounded-b-3xl">
         <div className="flex justify-between items-center mb-2">
           <h3 className="font-black uppercase text-foreground tracking-tighter">
             {pack.title}
           </h3>
           <span className={`text-xs font-bold tracking-widest uppercase ${pack.isFree ? 'text-green-500' : 'text-muted-foreground'}`}>
-            {pack.isFree ? 'FREE' : pack.price}
+            {pack.isFree ? 'GRATUIT' : pack.price}
           </span>
         </div>
         <p className="text-xs text-muted-foreground uppercase tracking-widest">
           {pack.sampleCount}
         </p>
       </div>
-    </motion.div>;
+    </motion.div>
+  );
 };
 const PacksSection = () => {
   const [selectedPack, setSelectedPack] = useState<Pack | null>(null);

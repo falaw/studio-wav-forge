@@ -55,9 +55,17 @@ const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="aspect-square bg-secondary border border-foreground/10 flex items-center justify-center text-8xl"
+              className="aspect-square bg-secondary border border-foreground/10 flex items-center justify-center text-8xl rounded-3xl overflow-hidden"
             >
-              {pack.icon}
+              {pack.coverImage ? (
+                <img 
+                  src={pack.coverImage} 
+                  alt={pack.title} 
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                pack.icon
+              )}
             </motion.div>
 
             {/* Pack Details */}
@@ -84,21 +92,23 @@ const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
 
               {/* Action Buttons */}
               <div className="flex items-center gap-6">
-                <button className="flex-1 bg-foreground text-background py-5 font-black uppercase tracking-tighter hover:bg-foreground/90 transition-colors flex items-center justify-center gap-3">
-                  {pack.isFree ? (
-                    <>
-                      <Download size={20} />
-                      Télécharger
-                    </>
-                  ) : (
-                    <>
-                      <ShoppingCart size={20} />
-                      Acheter — {pack.price}
-                    </>
-                  )}
-                </button>
+                {pack.isFree && pack.downloadUrl ? (
+                  <a 
+                    href={pack.downloadUrl}
+                    download
+                    className="flex-1 bg-foreground text-background py-5 font-black uppercase tracking-tighter hover:bg-foreground/90 transition-colors flex items-center justify-center gap-3 rounded-xl"
+                  >
+                    <Download size={20} />
+                    Télécharger Maintenant
+                  </a>
+                ) : (
+                  <button className="flex-1 bg-foreground text-background py-5 font-black uppercase tracking-tighter hover:bg-foreground/90 transition-colors flex items-center justify-center gap-3 rounded-xl">
+                    <ShoppingCart size={20} />
+                    Acheter — {pack.price}
+                  </button>
+                )}
                 
-                <button className="w-16 h-16 border border-foreground/20 flex items-center justify-center hover:bg-foreground/5 transition-colors text-foreground">
+                <button className="w-16 h-16 border border-foreground/20 flex items-center justify-center hover:bg-foreground/5 transition-colors text-foreground rounded-xl">
                   <Plus size={24} />
                 </button>
               </div>
