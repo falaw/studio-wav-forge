@@ -4,6 +4,7 @@ import { Menu } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { navigationLinks } from '@/data/projects';
 import useAudio from '@/hooks/useAudio';
+import VolumeControl from '@/components/VolumeControl';
 
 interface NavigationProps {
   onLogoClick?: () => void;
@@ -40,7 +41,10 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
       </motion.button>
 
       {/* Desktop Navigation */}
-      <div className="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-foreground">
+      <div className="hidden md:flex items-center space-x-8 text-sm uppercase tracking-widest text-foreground">
+        {/* Volume Control - avant le premier lien */}
+        <VolumeControl />
+        
         {navigationLinks.map((link) => (
           <a
             key={link.href}
