@@ -27,10 +27,10 @@ const Footer = () => {
             Collaboration
           </span>
           <a
-            href="mailto:hello@studiowav.com"
+            href="mailto:contact@studiowav.com?subject=Demande%20de%20collaboration%20-%20StudioWav"
             className="text-2xl md:text-5xl hover:text-primary transition-colors font-black tracking-tighter text-foreground"
           >
-            hello@studiowav.com
+            contact@studiowav.com
           </a>
         </motion.div>
 

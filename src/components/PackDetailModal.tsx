@@ -1,9 +1,11 @@
+import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Plus, ShoppingCart, Download } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Pack } from '@/data/projects';
 import AudioPlayer from './AudioPlayer';
+import useBackgroundMusic from '@/hooks/useBackgroundMusic';
 
 interface PackDetailModalProps {
   pack: Pack | null;
@@ -12,6 +14,18 @@ interface PackDetailModalProps {
 }
 
 const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
+  const { fadeOut, fadeIn, isPlaying } = useBackgroundMusic();
+
+  // Fade out background music when modal opens, fade in when it closes
+  useEffect(() => {
+    if (isOpen) {
+      fadeOut();
+    } else {
+      // Only fade in if music was playing before
+      fadeIn();
+    }
+  }, [isOpen, fadeOut, fadeIn]);
+
   if (!pack) return null;
 
   return (
