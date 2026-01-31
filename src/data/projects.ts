@@ -20,6 +20,12 @@ export interface MixProject {
   thumbnail: string;
 }
 
+export interface Sample {
+  id: string;
+  name: string;
+  url: string;
+}
+
 export interface Pack {
   id: string;
   title: string;
@@ -32,6 +38,7 @@ export interface Pack {
   sampleCount: string;
   audioPreviewUrl?: string;
   downloadUrl?: string;
+  samples?: Sample[];
 }
 
 export const soundDesignProjects: Project[] = [
@@ -114,6 +121,14 @@ export const mixProjects: MixProject[] = [
   },
 ];
 
+export const packzieuSamples: Sample[] = [
+  { id: 'sample-1', name: 'Flash Elec 2', url: '/sounds/samples/FlashElec2_Zieu.wav' },
+  { id: 'sample-2', name: 'Flash Texture Insect', url: '/sounds/samples/FlashTextureInsect_Zieu.wav' },
+  { id: 'sample-3', name: 'Paper 07', url: '/sounds/samples/Paper07_Zieu.wav' },
+  { id: 'sample-4', name: 'Texture Bubbles', url: '/sounds/samples/TextureBubbles_Zieu.wav' },
+  { id: 'sample-5', name: 'Riser Short', url: '/sounds/samples/RiserShort_Zieu.wav' },
+];
+
 export const sfxPacks: Pack[] = [
   {
     id: 'packzieu',
@@ -122,9 +137,10 @@ export const sfxPacks: Pack[] = [
     isFree: true,
     badge: 'GRATUIT',
     coverImage: packzieuCover,
-    description: 'Pack SFX 2026 par StudioWav. Textures, Whoosh, Flash, Paper, Riser. Haute qualité, 24-bit WAV, prêt pour l\'industrie.',
+    description: 'PACKZIEU est un pack contenant des SFX conçu pour le réalisateur ZieuFilm notamment pour ses dernières pub.',
     sampleCount: '50+ Samples',
-    downloadUrl: '/downloads/SW_PackSFX_ZieuFilm_@falaw.rar',
+    downloadUrl: '/downloads/PACKZIEU.rar',
+    samples: packzieuSamples,
   },
   {
     id: 'analog-hits',

@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { X, Plus, ShoppingCart, Download } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Pack } from '@/data/projects';
-import AudioPlayer from './AudioPlayer';
+import SamplePlayer from './SamplePlayer';
 import useBackgroundMusic from '@/hooks/useBackgroundMusic';
 
 interface PackDetailModalProps {
@@ -14,7 +14,8 @@ interface PackDetailModalProps {
 }
 
 const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
-  const { fadeOut, fadeIn, isPlaying } = useBackgroundMusic();
+  const { fadeOut, fadeIn } = useBackgroundMusic();
+  const [samplePlaying, setSamplePlaying] = useState(false);
 
   // Fade out background music when modal opens, fade in when it closes
   useEffect(() => {
@@ -30,7 +31,7 @@ const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-6xl w-full h-[90vh] bg-background border-studio-border p-0 overflow-hidden">
+      <DialogContent className="max-w-6xl w-full h-[90vh] bg-background border-studio-border p-0 overflow-hidden rounded-3xl">
         <VisuallyHidden>
           <DialogTitle>{pack.title}</DialogTitle>
         </VisuallyHidden>
@@ -55,7 +56,7 @@ const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="aspect-square bg-secondary border border-foreground/10 flex items-center justify-center text-8xl rounded-3xl overflow-hidden"
+              className="aspect-square bg-secondary border border-foreground/10 flex items-center justify-center text-8xl rounded-2xl overflow-hidden"
             >
               {pack.coverImage ? (
                 <img 
@@ -83,12 +84,29 @@ const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
                 {pack.title}
               </h1>
               
-              <p className="text-muted-foreground text-lg mb-12 leading-relaxed">
+              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                 {pack.description}
               </p>
 
-              {/* Audio Player */}
-              <AudioPlayer title={`${pack.title} - Preview`} />
+              {/* Sample Player */}
+              {pack.samples && pack.samples.length > 0 && (
+                <div className="mb-8">
+                  <span className="text-xs uppercase tracking-studio font-bold text-foreground mb-4 block">
+                    Aperçu du Pack
+                  </span>
+                  <SamplePlayer 
+                    samples={pack.samples} 
+                    onPlayStateChange={(isPlaying) => {
+                      setSamplePlaying(isPlaying);
+                      if (isPlaying) {
+                        fadeOut();
+                      } else {
+                        fadeIn();
+                      }
+                    }}
+                  />
+                </div>
+              )}
 
               {/* Action Buttons */}
               <div className="flex items-center gap-6">
