@@ -39,6 +39,7 @@ export interface Pack {
   audioPreviewUrl?: string;
   downloadUrl?: string;
   samples?: Sample[];
+  locked?: boolean;
 }
 
 export const soundDesignProjects: Project[] = [
@@ -151,6 +152,7 @@ export const sfxPacks: Pack[] = [
     icon: '📼',
     description: 'Une sélection de percussions analogiques enregistrées sur bandes. Sons authentiques et chaleureux.',
     sampleCount: '20+ One-shots',
+    locked: true,
   },
   {
     id: 'falaw-signature',
@@ -161,6 +163,7 @@ export const sfxPacks: Pack[] = [
     icon: '⚡',
     description: 'Le pack signature de Falaw. Drums & FX exclusifs. Créé avec passion pour des productions uniques.',
     sampleCount: 'Vol. 1',
+    locked: true,
   },
 ];
 
