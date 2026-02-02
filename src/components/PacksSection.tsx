@@ -48,7 +48,7 @@ const PackCard = ({
 
       {/* Image Container */}
       <div className={`aspect-square bg-background flex items-center justify-center relative overflow-hidden rounded-t-3xl ${
-        isLocked ? 'blur-sm' : ''
+        isLocked ? 'blur-lg' : ''
       }`}>
         <span className={`pack-badge ${isLocked ? 'opacity-50' : ''}`}>{pack.badge}</span>
         {pack.coverImage ? (
@@ -70,7 +70,7 @@ const PackCard = ({
 
       {/* Info */}
       <div className={`p-6 border-t border-foreground/5 bg-studio-card rounded-b-3xl ${
-        isLocked ? 'blur-sm' : ''
+        isLocked ? 'blur-lg' : ''
       }`}>
         <div className="flex justify-between items-center mb-2">
           <h3 className="font-black uppercase text-foreground tracking-tighter">

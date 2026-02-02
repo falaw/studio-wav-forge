@@ -2,6 +2,8 @@ import lplmCover from '@/assets/LPLM.webp';
 import rockstarCover from '@/assets/rockstar.webp';
 import jojoCover from '@/assets/JOJO.webp';
 import packzieuCover from '@/assets/packzieu-cover.jpg';
+import analogHitsCover from '@/assets/analog-hits-cover.jpg';
+import falawSignatureCover from '@/assets/falaw-signature-cover.jpg';
 
 export interface Project {
   id: string;
@@ -149,7 +151,7 @@ export const sfxPacks: Pack[] = [
     price: 'Gratuit',
     isFree: true,
     badge: 'Gratuit',
-    icon: '📼',
+    coverImage: analogHitsCover,
     description: 'Une sélection de percussions analogiques enregistrées sur bandes. Sons authentiques et chaleureux.',
     sampleCount: '20+ One-shots',
     locked: true,
@@ -160,7 +162,7 @@ export const sfxPacks: Pack[] = [
     price: '15.00€',
     isFree: false,
     badge: 'Exclusif',
-    icon: '⚡',
+    coverImage: falawSignatureCover,
     description: 'Le pack signature de Falaw. Drums & FX exclusifs. Créé avec passion pour des productions uniques.',
     sampleCount: 'Vol. 1',
     locked: true,
