@@ -60,7 +60,7 @@ export const soundDesignProjects: Project[] = [
   {
     id: 'project-new-02',
     title: 'PSG - Réédition Du Maillot 1975',
-    director: 'STUDIOWAV',
+    director: '',
     externalUrl: 'https://www.instagram.com/reel/DKgbJ_Yhz1c/',
     thumbnail: psgCover,
   },
