@@ -165,8 +165,12 @@ const unsortedMixProjects: MixProject[] = [
   },
 ];
 
-// Tri personnalisé : projets non-Outab en premier (par date décroissante), puis Outab en bas (par date décroissante)
+// Tri personnalisé : FAFREDDO FREESTYLE en premier, puis non-Outab (par date), puis Outab en bas (par date)
 export const mixProjects: MixProject[] = [...unsortedMixProjects].sort((a, b) => {
+  // FAFREDDO FREESTYLE toujours en premier
+  if (a.title === 'FAFREDDO FREESTYLE') return -1;
+  if (b.title === 'FAFREDDO FREESTYLE') return 1;
+  
   const aIsOutab = a.artist.toLowerCase() === 'outab';
   const bIsOutab = b.artist.toLowerCase() === 'outab';
   
