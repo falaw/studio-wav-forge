@@ -5,12 +5,14 @@ import packzieuCover from '@/assets/packzieu-cover.jpg';
 import analogHitsCover from '@/assets/analog-hits-cover.jpg';
 import falawSignatureCover from '@/assets/falaw-signature-cover.jpg';
 import outabDifferentCover from '@/assets/outab-different.webp';
+import instagramReelCover from '@/assets/instagram-reel-cover.jpg';
 
 export interface Project {
   id: string;
   title: string;
   director: string;
-  youtubeUrl: string;
+  youtubeUrl?: string;
+  externalUrl?: string; // Pour les liens non-YouTube (Instagram, etc.)
   thumbnail?: string;
 }
 
@@ -47,6 +49,20 @@ export interface Pack {
 }
 
 export const soundDesignProjects: Project[] = [
+  {
+    id: 'project-new-01',
+    title: 'La Mano 1.9 - On Sait',
+    director: 'REC709VISUEL',
+    youtubeUrl: 'https://youtu.be/OdyXZ5kS_z0',
+    thumbnail: 'https://img.youtube.com/vi/OdyXZ5kS_z0/maxresdefault.jpg',
+  },
+  {
+    id: 'project-new-02',
+    title: 'Instagram Reel',
+    director: 'STUDIOWAV',
+    externalUrl: 'https://www.instagram.com/reel/DKgbJ_Yhz1c/',
+    thumbnail: instagramReelCover,
+  },
   {
     id: 'project-01',
     title: '2Pit feat Evil P - ICE O LATOR',
