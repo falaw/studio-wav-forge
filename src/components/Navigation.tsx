@@ -65,9 +65,9 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
         </SheetTrigger>
         <SheetContent 
           side="right" 
-          className="w-full bg-background border-none"
+          className="w-full bg-background border-none flex flex-col"
         >
-          <div className="flex flex-col items-center justify-center h-full space-y-10">
+          <div className="flex flex-col items-center justify-center flex-1 space-y-10">
             <AnimatePresence>
               {navigationLinks.map((link, index) => (
                 <motion.a
@@ -84,6 +84,19 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
               ))}
             </AnimatePresence>
           </div>
+          
+          {/* Mobile Volume Control */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="pb-12 px-8"
+          >
+            <div className="flex flex-col items-center gap-4">
+              <span className="text-xs uppercase tracking-widest text-muted-foreground">Volume</span>
+              <VolumeControl isMobile />
+            </div>
+          </motion.div>
         </SheetContent>
       </Sheet>
     </motion.nav>

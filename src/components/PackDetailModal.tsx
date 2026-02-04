@@ -5,6 +5,7 @@ import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Pack } from '@/data/projects';
 import SamplePlayer from './SamplePlayer';
+import EmailGateModal from './EmailGateModal';
 import useBackgroundMusic from '@/hooks/useBackgroundMusic';
 
 interface PackDetailModalProps {
@@ -16,6 +17,7 @@ interface PackDetailModalProps {
 const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
   const { fadeOut, fadeIn } = useBackgroundMusic();
   const [samplePlaying, setSamplePlaying] = useState(false);
+  const [emailGateOpen, setEmailGateOpen] = useState(false);
 
   // Fade out background music when modal opens, fade in when it closes
   useEffect(() => {
@@ -111,14 +113,13 @@ const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
               {/* Action Buttons */}
               <div className="flex items-center gap-6">
                 {pack.isFree && pack.downloadUrl ? (
-                  <a 
-                    href={pack.downloadUrl}
-                    download
+                  <button 
+                    onClick={() => setEmailGateOpen(true)}
                     className="flex-1 bg-foreground text-background py-5 font-black uppercase tracking-tighter hover:bg-foreground/90 transition-colors flex items-center justify-center gap-3 rounded-xl"
                   >
                     <Download size={20} />
                     Télécharger Maintenant
-                  </a>
+                  </button>
                 ) : (
                   <button className="flex-1 bg-foreground text-background py-5 font-black uppercase tracking-tighter hover:bg-foreground/90 transition-colors flex items-center justify-center gap-3 rounded-xl">
                     <ShoppingCart size={20} />
@@ -130,6 +131,16 @@ const PackDetailModal = ({ pack, isOpen, onClose }: PackDetailModalProps) => {
                   <Plus size={24} />
                 </button>
               </div>
+
+              {/* Email Gate Modal */}
+              {pack.downloadUrl && (
+                <EmailGateModal
+                  isOpen={emailGateOpen}
+                  onClose={() => setEmailGateOpen(false)}
+                  downloadUrl={pack.downloadUrl}
+                  packTitle={pack.title}
+                />
+              )}
             </motion.div>
           </div>
         </motion.div>
