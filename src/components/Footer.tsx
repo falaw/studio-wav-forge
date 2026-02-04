@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Instagram } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -33,6 +34,20 @@ const Footer = () => {
             contact@studiowav.com
           </a>
         </motion.div>
+
+        <motion.a
+          href="https://www.instagram.com/studiowav_?igsh=ZDZicjQzOHJuNDFm&utm_source=qr"
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.15 }}
+          className="text-foreground hover:opacity-70 hover:scale-110 transition-all duration-300"
+          aria-label="Instagram StudioWav"
+        >
+          <Instagram size={28} strokeWidth={1.5} />
+        </motion.a>
 
         <motion.p
           initial={{ opacity: 0 }}
