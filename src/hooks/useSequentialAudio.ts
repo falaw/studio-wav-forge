@@ -45,7 +45,7 @@ export const useSequentialAudio = () => {
       // Pré-charger le son de transition
       const transitionAudio = new Audio(TRANSITION_SFX);
       transitionAudio.preload = 'auto';
-      transitionAudio.volume = 0.7; // Volume dominant
+      transitionAudio.volume = 0; // Commence à 0 pour le fade-in
       transitionAudioRef.current = transitionAudio;
       for (const soundPath of SOUND_FILES) {
         const audio = new Audio(soundPath);
@@ -114,7 +114,7 @@ export const useSequentialAudio = () => {
     return false;
   }, [isReady, currentSoundIndex]);
 
-  // Jouer le son de transition (coupe les autres sons)
+  // Jouer le son de transition (coupe les autres sons) avec fade-in
   const playTransitionSound = useCallback(() => {
     // Couper tous les sons séquentiels en cours
     audioRefs.current.forEach(audio => {
@@ -122,10 +122,26 @@ export const useSequentialAudio = () => {
       audio.currentTime = 0;
     });
     
-    // Jouer le son de transition
+    // Jouer le son de transition avec fade-in
     if (transitionAudioRef.current) {
-      transitionAudioRef.current.currentTime = 0;
-      transitionAudioRef.current.play().catch(console.warn);
+      const audio = transitionAudioRef.current;
+      audio.currentTime = 0;
+      audio.volume = 0;
+      audio.play().then(() => {
+        // Fade-in rapide sur 150ms jusqu'à volume 0.42 (40% de réduction depuis 0.7)
+        const targetVolume = 0.42;
+        const fadeSteps = 15;
+        const fadeInterval = 10; // 10ms par step = 150ms total
+        let currentStep = 0;
+        
+        const fadeIn = setInterval(() => {
+          currentStep++;
+          audio.volume = Math.min(targetVolume, (currentStep / fadeSteps) * targetVolume);
+          if (currentStep >= fadeSteps) {
+            clearInterval(fadeIn);
+          }
+        }, fadeInterval);
+      }).catch(console.warn);
     }
   }, []);
 
