@@ -20,6 +20,7 @@ export interface MixProject {
   type: 'single' | 'playlist' | 'album';
   youtubeUrl: string;
   thumbnail: string;
+  date: string; // Format: YYYY-MM-DD for sorting
 }
 
 export interface Sample {
@@ -89,7 +90,7 @@ export const soundDesignProjects: Project[] = [
   },
 ];
 
-export const mixProjects: MixProject[] = [
+const unsortedMixProjects: MixProject[] = [
   {
     id: 'mix-01',
     title: 'FAFREDDO FREESTYLE',
@@ -97,6 +98,7 @@ export const mixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/VzU5r5hJ_cY',
     thumbnail: 'https://img.youtube.com/vi/VzU5r5hJ_cY/maxresdefault.jpg',
+    date: '2024-01-01',
   },
   {
     id: 'mix-02',
@@ -105,6 +107,7 @@ export const mixProjects: MixProject[] = [
     type: 'playlist',
     youtubeUrl: 'https://youtube.com/playlist?list=OLAK5uy_lxmFJ_7JBZfh7glNerZcmEzpcA8mnqCcU',
     thumbnail: lplmCover,
+    date: '2024-02-01',
   },
   {
     id: 'mix-03',
@@ -113,6 +116,7 @@ export const mixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/rzwMJ3JBP3M',
     thumbnail: rockstarCover,
+    date: '2024-03-01',
   },
   {
     id: 'mix-04',
@@ -121,8 +125,49 @@ export const mixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/YVGms99zbZM',
     thumbnail: jojoCover,
+    date: '2024-04-01',
+  },
+  {
+    id: 'mix-05',
+    title: 'Chut',
+    artist: 'Calmé Zuu',
+    type: 'single',
+    youtubeUrl: 'https://youtu.be/vmPZSaj4Ids',
+    thumbnail: 'https://img.youtube.com/vi/vmPZSaj4Ids/maxresdefault.jpg',
+    date: '2025-02-20',
+  },
+  {
+    id: 'mix-06',
+    title: 'Est-ce que demain il fera beau ?',
+    artist: 'Calmé Zuu',
+    type: 'single',
+    youtubeUrl: 'https://youtu.be/RXSraJ_y4j4',
+    thumbnail: 'https://img.youtube.com/vi/RXSraJ_y4j4/maxresdefault.jpg',
+    date: '2025-03-13',
+  },
+  {
+    id: 'mix-07',
+    title: 'Chaque fois',
+    artist: 'Calmé Zuu',
+    type: 'single',
+    youtubeUrl: 'https://youtu.be/fO1X9wrNaqs',
+    thumbnail: 'https://img.youtube.com/vi/fO1X9wrNaqs/maxresdefault.jpg',
+    date: '2025-04-04',
+  },
+  {
+    id: 'mix-08',
+    title: 'Différent',
+    artist: 'Outab',
+    type: 'single',
+    youtubeUrl: 'https://youtu.be/VqqMK93SnCA',
+    thumbnail: 'https://img.youtube.com/vi/VqqMK93SnCA/maxresdefault.jpg',
+    date: '2025-05-20',
   },
 ];
+
+export const mixProjects: MixProject[] = [...unsortedMixProjects].sort(
+  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+);
 
 export const packzieuSamples: Sample[] = [
   { id: 'sample-1', name: 'Flash Elec 2', url: '/sounds/samples/FlashElec2_Zieu.wav' },

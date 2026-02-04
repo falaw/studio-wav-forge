@@ -18,43 +18,43 @@ const MixCard = ({ project, index }: MixCardProps) => {
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ duration: 0.6, delay: index * 0.08 }}
       className="work-card block group text-foreground"
     >
-      <div className="aspect-square bg-secondary overflow-hidden relative mb-4">
+      <div className="aspect-square bg-secondary overflow-hidden relative mb-3 rounded-xl">
         {/* Cover Image */}
         <img
           src={project.thumbnail}
           alt={`${project.title} - ${project.artist}`}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+          className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           loading="lazy"
         />
         
         {/* Playlist/EP Badge */}
         {isPlaylist && (
-          <div className="absolute top-3 left-3 z-10">
-            <span className="bg-foreground text-background text-xs font-bold px-2 py-1 uppercase tracking-wider">
+          <div className="absolute top-2.5 left-2.5 z-20">
+            <span className="bg-foreground text-background text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider rounded-sm">
               EP
             </span>
           </div>
         )}
         
         {/* Hover Overlay */}
-        <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 flex items-center justify-center">
-          <div className="flex items-center gap-2 border border-foreground px-5 py-2.5 bg-background/20 backdrop-blur-sm">
-            <Play size={16} className="fill-foreground" />
-            <span className="text-foreground text-sm font-medium tracking-wider">
-              ÉCOUTER
+        <div className="absolute inset-0 bg-background/50 backdrop-blur-[2px] opacity-0 group-hover:opacity-100 transition-all duration-300 z-10 flex items-center justify-center">
+          <div className="flex items-center gap-2.5 px-5 py-2.5 bg-background/80 backdrop-blur-md border border-foreground/20 rounded-full transition-all duration-300 group-hover:bg-foreground group-hover:border-foreground">
+            <Play size={14} className="fill-foreground group-hover:fill-background transition-colors duration-300" />
+            <span className="text-foreground text-xs font-semibold tracking-widest uppercase group-hover:text-background transition-colors duration-300">
+              Écouter
             </span>
           </div>
         </div>
       </div>
       
       {/* Text Content */}
-      <h3 className="text-lg font-black uppercase tracking-tighter leading-tight">
+      <h3 className="text-base font-black uppercase tracking-tighter leading-tight">
         {project.title}
       </h3>
-      <p className="text-muted-foreground text-sm mt-1">
+      <p className="text-muted-foreground text-xs mt-0.5">
         {project.artist}
       </p>
     </motion.a>
@@ -78,7 +78,7 @@ const MixSection = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-10">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-8">
           {mixProjects.map((project, index) => (
             <MixCard key={project.id} project={project} index={index} />
           ))}
