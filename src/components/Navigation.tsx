@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu } from 'lucide-react';
+import { Menu, Volume2, VolumeX } from 'lucide-react';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { navigationLinks } from '@/data/projects';
 import useAudio from '@/hooks/useAudio';
+import useBackgroundMusic from '@/hooks/useBackgroundMusic';
 import VolumeControl from '@/components/VolumeControl';
 
 interface NavigationProps {
@@ -13,6 +14,7 @@ interface NavigationProps {
 const Navigation = ({ onLogoClick }: NavigationProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const { playExitSFX } = useAudio();
+  const { isMuted, toggleMute } = useBackgroundMusic();
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -57,48 +59,48 @@ const Navigation = ({ onLogoClick }: NavigationProps) => {
       </div>
 
       {/* Mobile Navigation */}
-      <Sheet open={isOpen} onOpenChange={setIsOpen}>
-        <SheetTrigger asChild className="md:hidden">
-          <button className="text-2xl text-foreground p-2">
-            <Menu size={24} />
-          </button>
-        </SheetTrigger>
-        <SheetContent 
-          side="right" 
-          className="w-full bg-background border-none flex flex-col"
+      <div className="md:hidden flex items-center gap-2">
+        {/* Mobile Mute Toggle */}
+        <motion.button
+          onClick={toggleMute}
+          className="text-foreground hover:text-primary transition-colors p-2 rounded-full"
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label={isMuted ? "Activer le son" : "Couper le son"}
         >
-          <div className="flex flex-col items-center justify-center flex-1 space-y-10">
-            <AnimatePresence>
-              {navigationLinks.map((link, index) => (
-                <motion.a
-                  key={link.href}
-                  href={link.href}
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  onClick={() => setIsOpen(false)}
-                  className="text-2xl font-black uppercase tracking-widest text-foreground hover:text-primary transition-colors"
-                >
-                  {link.label}
-                </motion.a>
-              ))}
-            </AnimatePresence>
-          </div>
-          
-          {/* Mobile Volume Control */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="pb-12 px-8"
+          {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+        </motion.button>
+
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <button className="text-2xl text-foreground p-2">
+              <Menu size={24} />
+            </button>
+          </SheetTrigger>
+          <SheetContent 
+            side="right" 
+            className="w-full bg-background border-none flex flex-col"
           >
-            <div className="flex flex-col items-center gap-4">
-              <span className="text-xs uppercase tracking-widest text-muted-foreground">Volume</span>
-              <VolumeControl isMobile />
+            <div className="flex flex-col items-center justify-center flex-1 space-y-10">
+              <AnimatePresence>
+                {navigationLinks.map((link, index) => (
+                  <motion.a
+                    key={link.href}
+                    href={link.href}
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    onClick={() => setIsOpen(false)}
+                    className="text-2xl font-black uppercase tracking-widest text-foreground hover:text-primary transition-colors"
+                  >
+                    {link.label}
+                  </motion.a>
+                ))}
+              </AnimatePresence>
             </div>
-          </motion.div>
-        </SheetContent>
-      </Sheet>
+          </SheetContent>
+        </Sheet>
+      </div>
     </motion.nav>
   );
 };

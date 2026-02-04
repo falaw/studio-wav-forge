@@ -1,56 +1,42 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Volume2, VolumeX, Volume1 } from 'lucide-react';
 import { Slider } from '@/components/ui/slider';
 import useBackgroundMusic from '@/hooks/useBackgroundMusic';
 
-interface VolumeControlProps {
-  isMobile?: boolean;
-}
-
-const VolumeControl = ({ isMobile = false }: VolumeControlProps) => {
+const VolumeControl = () => {
   const { volume, isMuted, setVolume, toggleMute } = useBackgroundMusic();
   const [isHovered, setIsHovered] = useState(false);
+  const [localVolume, setLocalVolume] = useState(volume);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Sync local volume with global volume
+  useEffect(() => {
+    setLocalVolume(volume);
+  }, [volume]);
 
   const getVolumeIcon = () => {
-    if (isMuted || volume === 0) {
-      return <VolumeX size={isMobile ? 24 : 16} />;
+    if (isMuted || localVolume === 0) {
+      return <VolumeX size={16} />;
     }
-    if (volume < 0.5) {
-      return <Volume1 size={isMobile ? 24 : 16} />;
+    if (localVolume < 0.5) {
+      return <Volume1 size={16} />;
     }
-    return <Volume2 size={isMobile ? 24 : 16} />;
+    return <Volume2 size={16} />;
   };
 
   const handleVolumeChange = (values: number[]) => {
-    setVolume(values[0]);
+    const newVolume = values[0];
+    setLocalVolume(newVolume);
+    
+    // Debounce the actual volume change
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
+    timeoutRef.current = setTimeout(() => {
+      setVolume(newVolume);
+    }, 10);
   };
-
-  // Mobile version - always visible slider
-  if (isMobile) {
-    return (
-      <div className="flex items-center gap-4 w-full max-w-xs">
-        <motion.button
-          onClick={toggleMute}
-          className="text-foreground hover:text-primary transition-colors p-2"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          aria-label={isMuted ? "Activer le son" : "Couper le son"}
-        >
-          {getVolumeIcon()}
-        </motion.button>
-        
-        <Slider
-          value={[isMuted ? 0 : volume]}
-          min={0}
-          max={1}
-          step={0.01}
-          onValueChange={handleVolumeChange}
-          className="flex-1 cursor-pointer touch-pan-y"
-        />
-      </div>
-    );
-  }
 
   // Desktop version - hover to show slider
   return (
@@ -70,7 +56,7 @@ const VolumeControl = ({ isMobile = false }: VolumeControlProps) => {
             className="overflow-hidden"
           >
             <Slider
-              value={[isMuted ? 0 : volume]}
+              value={[isMuted ? 0 : localVolume]}
               min={0}
               max={1}
               step={0.01}

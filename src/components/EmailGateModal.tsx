@@ -5,8 +5,8 @@ import { Dialog, DialogContent, DialogTitle } from '@/components/ui/dialog';
 import { VisuallyHidden } from '@radix-ui/react-visually-hidden';
 import { Input } from '@/components/ui/input';
 
-// Configure your Formspree endpoint here
-const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+// Formspree endpoint
+const FORM_ENDPOINT = 'https://formspree.io/f/xkovwwgk';
 
 interface EmailGateModalProps {
   isOpen: boolean;
@@ -196,10 +196,10 @@ const EmailGateModal = ({ isOpen, onClose, downloadUrl, packTitle }: EmailGateMo
               </div>
               
               <h2 className="text-2xl font-black tracking-tighter text-foreground uppercase mb-2">
-                Merci !
+                C'est parti !
               </h2>
               <p className="text-muted-foreground">
-                Téléchargement lancé ! 🎉
+                Ton téléchargement commence 🎉
               </p>
             </motion.div>
           )}
