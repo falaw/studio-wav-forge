@@ -51,7 +51,7 @@ export interface Pack {
 export const soundDesignProjects: Project[] = [
   {
     id: 'project-new-01',
-    title: 'La Mano 1.9 - On Sait',
+    title: 'REC 709 - SHOWREEL 2025',
     director: 'REC709VISUEL',
     youtubeUrl: 'https://youtu.be/OdyXZ5kS_z0',
     thumbnail: 'https://img.youtube.com/vi/OdyXZ5kS_z0/maxresdefault.jpg',
