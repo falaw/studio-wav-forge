@@ -130,7 +130,7 @@ const unsortedMixProjects: MixProject[] = [
   {
     id: 'mix-05',
     title: 'Chut',
-    artist: 'Calmé Zuu',
+    artist: 'Outab',
     type: 'single',
     youtubeUrl: 'https://youtu.be/vmPZSaj4Ids',
     thumbnail: 'https://img.youtube.com/vi/vmPZSaj4Ids/maxresdefault.jpg',
@@ -139,7 +139,7 @@ const unsortedMixProjects: MixProject[] = [
   {
     id: 'mix-06',
     title: 'Est-ce que demain il fera beau ?',
-    artist: 'Calmé Zuu',
+    artist: 'Outab',
     type: 'single',
     youtubeUrl: 'https://youtu.be/RXSraJ_y4j4',
     thumbnail: 'https://img.youtube.com/vi/RXSraJ_y4j4/maxresdefault.jpg',
@@ -148,7 +148,7 @@ const unsortedMixProjects: MixProject[] = [
   {
     id: 'mix-07',
     title: 'Chaque fois',
-    artist: 'Calmé Zuu',
+    artist: 'Outab',
     type: 'single',
     youtubeUrl: 'https://youtu.be/fO1X9wrNaqs',
     thumbnail: 'https://img.youtube.com/vi/fO1X9wrNaqs/maxresdefault.jpg',
@@ -165,9 +165,18 @@ const unsortedMixProjects: MixProject[] = [
   },
 ];
 
-export const mixProjects: MixProject[] = [...unsortedMixProjects].sort(
-  (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-);
+// Tri personnalisé : projets non-Outab en premier (par date décroissante), puis Outab en bas (par date décroissante)
+export const mixProjects: MixProject[] = [...unsortedMixProjects].sort((a, b) => {
+  const aIsOutab = a.artist.toLowerCase() === 'outab';
+  const bIsOutab = b.artist.toLowerCase() === 'outab';
+  
+  // Si un seul des deux est Outab, le non-Outab passe en premier
+  if (aIsOutab && !bIsOutab) return 1;
+  if (!aIsOutab && bIsOutab) return -1;
+  
+  // Sinon, tri par date décroissante dans chaque groupe
+  return new Date(b.date).getTime() - new Date(a.date).getTime();
+});
 
 export const packzieuSamples: Sample[] = [
   { id: 'sample-1', name: 'Flash Elec 2', url: '/sounds/samples/FlashElec2_Zieu.wav' },
