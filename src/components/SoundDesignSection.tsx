@@ -46,9 +46,11 @@ const WorkCard = ({
         )}
       </div>
       <h3 className="text-xl font-bold italic text-foreground">{project.title}</h3>
-      <p className="text-muted-foreground text-sm mt-1 uppercase tracking-tighter">
-        Réal : {project.director}
-      </p>
+      {project.director && (
+        <p className="text-muted-foreground text-sm mt-1 uppercase tracking-tighter">
+          Réal : {project.director}
+        </p>
+      )}
     </motion.a>
   );
 };
