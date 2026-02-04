@@ -97,50 +97,46 @@ const SamplePlayer = ({ samples, onPlayStateChange }: SamplePlayerProps) => {
               rounded-full
               transition-all duration-300 ease-out
               ${isPlaying 
-                ? `
-                  bg-[#1a1a1a]
-                  shadow-[inset_3px_3px_6px_rgba(0,0,0,0.8),inset_-2px_-2px_4px_rgba(60,60,60,0.15)]
-                ` 
-                : `
-                  bg-[#1c1c1c]
-                  shadow-[6px_6px_12px_rgba(0,0,0,0.8),-4px_-4px_10px_rgba(60,60,60,0.08)]
-                  hover:shadow-[8px_8px_16px_rgba(0,0,0,0.9),-5px_-5px_12px_rgba(70,70,70,0.1)]
-                  hover:bg-[#1e1e1e]
-                `
+                ? 'bg-[#141418]' 
+                : 'bg-[#1c1c1c] hover:bg-[#1e1e1e]'
               }
             `}
             style={{
               boxShadow: isPlaying 
-                ? 'inset 3px 3px 6px rgba(0,0,0,0.8), inset -2px -2px 4px rgba(60,60,60,0.15), 0 0 20px rgba(251,146,60,0.3), 0 0 40px rgba(251,146,60,0.15)'
-                : undefined
+                ? 'inset 4px 4px 8px rgba(0,0,0,0.9), inset -3px -3px 6px rgba(40,40,50,0.2), 0 0 25px rgba(59,130,246,0.4), 0 0 50px rgba(59,130,246,0.2)'
+                : '6px 6px 12px rgba(0,0,0,0.8), -4px -4px 10px rgba(60,60,60,0.08)'
             }}
           >
             {/* Sample Name - Left */}
             <span className={`
               text-sm font-medium truncate text-left flex-1
               transition-colors duration-300
-              ${isPlaying ? 'text-orange-400' : 'text-foreground/80'}
+              ${isPlaying ? 'text-blue-400' : 'text-foreground/80'}
             `}>
               {sample.name}
             </span>
 
             {/* Play/Pause Icon - Right */}
-            <div className={`
-              w-10 h-10 rounded-full flex items-center justify-center shrink-0
-              transition-all duration-300
-              ${isPlaying 
-                ? `
-                  bg-gradient-to-br from-orange-500 to-amber-600
-                  shadow-[0_0_15px_rgba(251,146,60,0.5),0_0_30px_rgba(251,146,60,0.25)]
-                ` 
-                : `
-                  bg-[#252525]
-                  shadow-[3px_3px_6px_rgba(0,0,0,0.7),-2px_-2px_4px_rgba(60,60,60,0.1)]
-                `
-              }
-            `}>
+            <div 
+              className={`
+                w-10 h-10 rounded-full flex items-center justify-center shrink-0
+                transition-all duration-300
+                ${isPlaying 
+                  ? 'bg-[#1a1a22]' 
+                  : 'bg-[#252525]'
+                }
+              `}
+              style={{
+                boxShadow: isPlaying
+                  ? 'inset 2px 2px 4px rgba(0,0,0,0.8), inset -1px -1px 3px rgba(50,50,60,0.2), 0 0 12px rgba(59,130,246,0.6), 0 0 24px rgba(59,130,246,0.3)'
+                  : '3px 3px 6px rgba(0,0,0,0.7), -2px -2px 4px rgba(60,60,60,0.1)'
+              }}
+            >
               {isPlaying ? (
-                <Pause size={16} className="text-white" />
+                <Pause 
+                  size={16} 
+                  className="text-blue-400 drop-shadow-[0_0_6px_rgba(59,130,246,0.8)]" 
+                />
               ) : (
                 <Play size={16} className="text-foreground/70 ml-0.5" />
               )}
