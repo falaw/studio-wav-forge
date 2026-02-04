@@ -6,6 +6,7 @@ import analogHitsCover from '@/assets/analog-hits-cover.jpg';
 import falawSignatureCover from '@/assets/falaw-signature-cover.jpg';
 import outabDifferentCover from '@/assets/outab-different.webp';
 import instagramReelCover from '@/assets/instagram-reel-cover.jpg';
+import psgCover from '@/assets/psg-cover.png';
 
 export interface Project {
   id: string;
@@ -58,10 +59,10 @@ export const soundDesignProjects: Project[] = [
   },
   {
     id: 'project-new-02',
-    title: 'Instagram Reel',
+    title: 'PSG - Réédition Du Maillot 1975',
     director: 'STUDIOWAV',
     externalUrl: 'https://www.instagram.com/reel/DKgbJ_Yhz1c/',
-    thumbnail: instagramReelCover,
+    thumbnail: psgCover,
   },
   {
     id: 'project-01',
