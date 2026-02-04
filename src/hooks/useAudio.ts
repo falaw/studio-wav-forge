@@ -31,7 +31,7 @@ export const useAudio = () => {
     if (!exitAudioElement) {
       exitAudioElement = new Audio(EXIT_SITE_SFX);
       exitAudioElement.preload = 'auto';
-      exitAudioElement.volume = 0.7;
+      exitAudioElement.volume = 0; // Commence à 0 pour le fade-in
     }
   }, []);
 
@@ -107,11 +107,27 @@ export const useAudio = () => {
     osc2.stop(ctx.currentTime + duration);
   }, [ensureContext]);
 
-  // Play exit SFX using the real audio file
+  // Play exit SFX using the real audio file avec fade-in
   const playExitSFX = useCallback(() => {
     if (exitAudioElement) {
-      exitAudioElement.currentTime = 0;
-      exitAudioElement.play().catch(console.warn);
+      const audio = exitAudioElement;
+      audio.currentTime = 0;
+      audio.volume = 0;
+      audio.play().then(() => {
+        // Fade-in rapide sur 150ms jusqu'à volume 0.42 (40% de réduction depuis 0.7)
+        const targetVolume = 0.42;
+        const fadeSteps = 15;
+        const fadeInterval = 10;
+        let currentStep = 0;
+        
+        const fadeIn = setInterval(() => {
+          currentStep++;
+          audio.volume = Math.min(targetVolume, (currentStep / fadeSteps) * targetVolume);
+          if (currentStep >= fadeSteps) {
+            clearInterval(fadeIn);
+          }
+        }, fadeInterval);
+      }).catch(console.warn);
     }
   }, []);
 
