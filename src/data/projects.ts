@@ -4,6 +4,7 @@ import jojoCover from '@/assets/JOJO.webp';
 import packzieuCover from '@/assets/packzieu-cover.jpg';
 import analogHitsCover from '@/assets/analog-hits-cover.jpg';
 import falawSignatureCover from '@/assets/falaw-signature-cover.jpg';
+import outabDifferentCover from '@/assets/outab-different.webp';
 
 export interface Project {
   id: string;
@@ -160,7 +161,7 @@ const unsortedMixProjects: MixProject[] = [
     artist: 'Outab',
     type: 'single',
     youtubeUrl: 'https://youtu.be/VqqMK93SnCA',
-    thumbnail: 'https://img.youtube.com/vi/VqqMK93SnCA/maxresdefault.jpg',
+    thumbnail: outabDifferentCover,
     date: '2025-05-20',
   },
 ];
