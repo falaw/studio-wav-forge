@@ -9,9 +9,12 @@ const WorkCard = ({
   project,
   index
 }: WorkCardProps) => {
+  // Détermine l'URL à utiliser (YouTube ou externe)
+  const linkUrl = project.youtubeUrl || project.externalUrl || '#';
+  
   return (
     <motion.a 
-      href={project.youtubeUrl} 
+      href={linkUrl} 
       target="_blank" 
       rel="noopener noreferrer" 
       initial={{ opacity: 0, y: 30 }}
