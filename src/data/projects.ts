@@ -7,6 +7,10 @@ import falawSignatureCover from '@/assets/falaw-signature-cover.jpg';
 import outabDifferentCover from '@/assets/outab-different.webp';
 import instagramReelCover from '@/assets/instagram-reel-cover.jpg';
 import psgCover from '@/assets/psg-cover.png';
+import morpheus83RecitCover from '@/assets/morpheus-83recit.jpg';
+import toraLostDoveCover from '@/assets/tora-lost-dove.jpg';
+import toraShineCover from '@/assets/tora-shine.jpg';
+import morpheusEtincelleCover from '@/assets/morpheus-etincelle.jpg';
 
 export interface Project {
   id: string;
@@ -187,7 +191,7 @@ const unsortedMixProjects: MixProject[] = [
     artist: 'MORPHEUS',
     type: 'single',
     youtubeUrl: 'https://youtu.be/oE7_rSe_Y2E',
-    thumbnail: 'https://img.youtube.com/vi/oE7_rSe_Y2E/maxresdefault.jpg',
+    thumbnail: morpheus83RecitCover,
     date: '2025-06-01',
   },
   {
@@ -196,7 +200,7 @@ const unsortedMixProjects: MixProject[] = [
     artist: 'Tora Meishi',
     type: 'single',
     youtubeUrl: 'https://youtu.be/qkJmEvtBKZo',
-    thumbnail: 'https://img.youtube.com/vi/qkJmEvtBKZo/maxresdefault.jpg',
+    thumbnail: toraLostDoveCover,
     date: '2025-06-15',
   },
   {
@@ -205,7 +209,7 @@ const unsortedMixProjects: MixProject[] = [
     artist: 'Tora Meishi',
     type: 'single',
     youtubeUrl: 'https://youtu.be/Lz3QGWLbfzI',
-    thumbnail: 'https://img.youtube.com/vi/Lz3QGWLbfzI/maxresdefault.jpg',
+    thumbnail: toraShineCover,
     date: '2025-07-01',
   },
   {
@@ -214,7 +218,7 @@ const unsortedMixProjects: MixProject[] = [
     artist: 'MORPHEUS',
     type: 'single',
     youtubeUrl: 'https://youtu.be/TLTrb_eo1x4',
-    thumbnail: 'https://img.youtube.com/vi/TLTrb_eo1x4/maxresdefault.jpg',
+    thumbnail: morpheusEtincelleCover,
     date: '2025-07-15',
   },
 ];
