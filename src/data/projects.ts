@@ -120,7 +120,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/VzU5r5hJ_cY',
     thumbnail: 'https://img.youtube.com/vi/VzU5r5hJ_cY/maxresdefault.jpg',
-    date: '2024-01-01',
+    date: '2026-01-15',
   },
   {
     id: 'mix-02',
@@ -129,7 +129,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'playlist',
     youtubeUrl: 'https://youtube.com/playlist?list=OLAK5uy_lxmFJ_7JBZfh7glNerZcmEzpcA8mnqCcU',
     thumbnail: lplmCover,
-    date: '2024-02-01',
+    date: '2025-01-15',
   },
   {
     id: 'mix-03',
@@ -138,7 +138,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/rzwMJ3JBP3M',
     thumbnail: rockstarCover,
-    date: '2024-03-01',
+    date: '2025-02-01',
   },
   {
     id: 'mix-04',
@@ -147,7 +147,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/YVGms99zbZM',
     thumbnail: jojoCover,
-    date: '2024-04-01',
+    date: '2025-03-01',
   },
   {
     id: 'mix-05',
@@ -210,7 +210,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/Lz3QGWLbfzI',
     thumbnail: toraShineCover,
-    date: '2025-07-01',
+    date: '2024-06-01',
   },
   {
     id: 'mix-12',
@@ -219,7 +219,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/TLTrb_eo1x4',
     thumbnail: morpheusEtincelleCover,
-    date: '2025-07-15',
+    date: '2024-07-01',
   },
 ];
 
