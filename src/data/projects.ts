@@ -201,11 +201,12 @@ export const mixProjects: MixProject[] = [...unsortedMixProjects].sort((a, b) =>
 });
 
 export const packzieuSamples: Sample[] = [
-  { id: 'sample-1', name: 'Flash Elec 2', url: '/sounds/samples/FlashElec2_Zieu.wav' },
-  { id: 'sample-2', name: 'Flash Texture Insect', url: '/sounds/samples/FlashTextureInsect_Zieu.wav' },
-  { id: 'sample-3', name: 'Paper 07', url: '/sounds/samples/Paper07_Zieu.wav' },
-  { id: 'sample-4', name: 'Texture Bubbles', url: '/sounds/samples/TextureBubbles_Zieu.wav' },
-  { id: 'sample-5', name: 'Riser Short', url: '/sounds/samples/RiserShort_Zieu.wav' },
+  { id: 'sample-1', name: 'Flash Pencil', url: '/sounds/samples/FlashPencil_Zieu.wav' },
+  { id: 'sample-2', name: 'Impact Cinematic', url: '/sounds/samples/ImpactCinematic_Zieu.wav' },
+  { id: 'sample-3', name: 'Paper Texture', url: '/sounds/samples/PaperTexture_Zieu.wav' },
+  { id: 'sample-4', name: 'Cinematic Riser', url: '/sounds/samples/CinematicRiser_Zieu.wav' },
+  { id: 'sample-5', name: 'Bubble Texture', url: '/sounds/samples/BubbleTexture_Zieu.wav' },
+  { id: 'sample-6', name: 'Whoosh Low', url: '/sounds/samples/WhooshLow_Zieu.wav' },
 ];
 
 export const sfxPacks: Pack[] = [
