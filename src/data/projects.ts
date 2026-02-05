@@ -181,6 +181,42 @@ const unsortedMixProjects: MixProject[] = [
     thumbnail: outabDifferentCover,
     date: '2025-05-20',
   },
+  {
+    id: 'mix-09',
+    title: '83 RÉCIT',
+    artist: 'MORPHEUS',
+    type: 'single',
+    youtubeUrl: 'https://youtu.be/oE7_rSe_Y2E',
+    thumbnail: 'https://img.youtube.com/vi/oE7_rSe_Y2E/maxresdefault.jpg',
+    date: '2025-06-01',
+  },
+  {
+    id: 'mix-10',
+    title: 'LOST DOVE',
+    artist: 'Tora Meishi',
+    type: 'single',
+    youtubeUrl: 'https://youtu.be/qkJmEvtBKZo',
+    thumbnail: 'https://img.youtube.com/vi/qkJmEvtBKZo/maxresdefault.jpg',
+    date: '2025-06-15',
+  },
+  {
+    id: 'mix-11',
+    title: 'Shine',
+    artist: 'Tora Meishi',
+    type: 'single',
+    youtubeUrl: 'https://youtu.be/Lz3QGWLbfzI',
+    thumbnail: 'https://img.youtube.com/vi/Lz3QGWLbfzI/maxresdefault.jpg',
+    date: '2025-07-01',
+  },
+  {
+    id: 'mix-12',
+    title: 'ETINCELLE',
+    artist: 'MORPHEUS',
+    type: 'single',
+    youtubeUrl: 'https://youtu.be/TLTrb_eo1x4',
+    thumbnail: 'https://img.youtube.com/vi/TLTrb_eo1x4/maxresdefault.jpg',
+    date: '2025-07-15',
+  },
 ];
 
 // Tri personnalisé : FAFREDDO FREESTYLE en premier, puis non-Outab (par date), puis Outab en bas (par date)
