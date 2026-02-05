@@ -129,7 +129,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'playlist',
     youtubeUrl: 'https://youtube.com/playlist?list=OLAK5uy_lxmFJ_7JBZfh7glNerZcmEzpcA8mnqCcU',
     thumbnail: lplmCover,
-    date: '2025-01-15',
+    date: '2025-10-01',
   },
   {
     id: 'mix-03',
@@ -138,7 +138,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/rzwMJ3JBP3M',
     thumbnail: rockstarCover,
-    date: '2025-02-01',
+    date: '2025-11-01',
   },
   {
     id: 'mix-04',
@@ -147,7 +147,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/YVGms99zbZM',
     thumbnail: jojoCover,
-    date: '2025-03-01',
+    date: '2025-12-01',
   },
   {
     id: 'mix-05',
@@ -156,7 +156,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/vmPZSaj4Ids',
     thumbnail: 'https://img.youtube.com/vi/vmPZSaj4Ids/maxresdefault.jpg',
-    date: '2025-02-20',
+    date: '2025-06-01',
   },
   {
     id: 'mix-06',
@@ -165,7 +165,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/RXSraJ_y4j4',
     thumbnail: 'https://img.youtube.com/vi/RXSraJ_y4j4/maxresdefault.jpg',
-    date: '2025-03-13',
+    date: '2025-07-01',
   },
   {
     id: 'mix-07',
@@ -174,7 +174,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/fO1X9wrNaqs',
     thumbnail: 'https://img.youtube.com/vi/fO1X9wrNaqs/maxresdefault.jpg',
-    date: '2025-04-04',
+    date: '2025-08-01',
   },
   {
     id: 'mix-08',
@@ -183,7 +183,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/VqqMK93SnCA',
     thumbnail: outabDifferentCover,
-    date: '2025-05-20',
+    date: '2025-09-01',
   },
   {
     id: 'mix-09',
@@ -192,7 +192,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/oE7_rSe_Y2E',
     thumbnail: morpheus83RecitCover,
-    date: '2025-06-01',
+    date: '2025-05-01',
   },
   {
     id: 'mix-10',
@@ -201,7 +201,7 @@ const unsortedMixProjects: MixProject[] = [
     type: 'single',
     youtubeUrl: 'https://youtu.be/qkJmEvtBKZo',
     thumbnail: toraLostDoveCover,
-    date: '2025-06-15',
+    date: '2025-04-01',
   },
   {
     id: 'mix-11',
@@ -223,20 +223,8 @@ const unsortedMixProjects: MixProject[] = [
   },
 ];
 
-// Tri personnalisé : FAFREDDO FREESTYLE en premier, puis non-Outab (par date), puis Outab en bas (par date)
+// Tri par date décroissante
 export const mixProjects: MixProject[] = [...unsortedMixProjects].sort((a, b) => {
-  // FAFREDDO FREESTYLE toujours en premier
-  if (a.title === 'FAFREDDO FREESTYLE') return -1;
-  if (b.title === 'FAFREDDO FREESTYLE') return 1;
-  
-  const aIsOutab = a.artist.toLowerCase() === 'outab';
-  const bIsOutab = b.artist.toLowerCase() === 'outab';
-  
-  // Si un seul des deux est Outab, le non-Outab passe en premier
-  if (aIsOutab && !bIsOutab) return 1;
-  if (!aIsOutab && bIsOutab) return -1;
-  
-  // Sinon, tri par date décroissante dans chaque groupe
   return new Date(b.date).getTime() - new Date(a.date).getTime();
 });
 
