@@ -218,7 +218,7 @@ export const sfxPacks: Pack[] = [
     coverImage: packzieuCover,
     description: 'PACKZIEU est un pack contenant des SFX conçu pour le réalisateur ZieuFilm notamment pour ses dernières pub.',
     sampleCount: '50+ Samples',
-    downloadUrl: '/downloads/PACKZIEU.rar',
+    downloadUrl: 'https://www.dropbox.com/scl/fo/dyzavbdytgcr3ckcs5va6/ACgbw9de7X0DUD5Jg2rBvvI?rlkey=zgnb2ydstmwh6audgti49yh6b&st=vfc50lg0&dl=1',
     samples: packzieuSamples,
   },
   {
