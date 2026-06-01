@@ -129,7 +129,7 @@ const unsortedMixProjects: MixProject[] = [
     title: 'FLEUR DE LYS',
     artist: 'Bakaliv',
     type: 'single',
-    youtubeUrl: 'https://www.youtube.com/watch?v=egWC1lk_fpw&list=OLAK5uy_mOCiYjFpqGdz6p8ZG8LcTpDz6G8IgeXRY',
+    youtubeUrl: 'https://www.youtube.com/watch?si=GYkb8JIeru03qBlS&v=rqt3DxkxKjA&feature=youtu.be',
     thumbnail: fleurDeLysCover.url,
     date: '2026-02-15',
   },
