@@ -15,7 +15,7 @@ export const useBackgroundMusic = () => {
   const [volume, setVolumeState] = useState(globalVolume);
   const [isMuted, setIsMutedState] = useState(isMutedGlobal);
   const [isPlaying, setIsPlaying] = useState(false);
-  const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const fadeIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // Initialiser l'audio une seule fois
   useEffect(() => {
