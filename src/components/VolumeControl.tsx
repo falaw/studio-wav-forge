@@ -8,7 +8,7 @@ const VolumeControl = () => {
   const { volume, isMuted, setVolume, toggleMute } = useBackgroundMusic();
   const [isHovered, setIsHovered] = useState(false);
   const [localVolume, setLocalVolume] = useState(volume);
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // Sync local volume with global volume
   useEffect(() => {
