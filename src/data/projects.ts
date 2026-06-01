@@ -11,6 +11,8 @@ import morpheus83RecitCover from '@/assets/morpheus-83recit.jpg';
 import toraLostDoveCover from '@/assets/tora-lost-dove.jpg';
 import toraShineCover from '@/assets/tora-shine.jpg';
 import morpheusEtincelleCover from '@/assets/morpheus-etincelle.jpg';
+import fafreddoCover from '@/assets/fafreddo-cover.jpeg.asset.json';
+import fleurDeLysCover from '@/assets/fleur-de-lys-cover.jpeg.asset.json';
 
 export interface Project {
   id: string;
@@ -113,6 +115,24 @@ export const soundDesignProjects: Project[] = [
 ];
 
 const unsortedMixProjects: MixProject[] = [
+  {
+    id: 'mix-13',
+    title: 'FAFREDDO',
+    artist: 'Calmé Zuu',
+    type: 'single',
+    youtubeUrl: 'https://www.youtube.com/watch?v=egWC1lk_fpw&list=OLAK5uy_mOCiYjFpqGdz6p8ZG8LcTpDz6G8IgeXRY',
+    thumbnail: fafreddoCover.url,
+    date: '2026-03-01',
+  },
+  {
+    id: 'mix-14',
+    title: 'FLEUR DE LYS',
+    artist: 'Bakaliv',
+    type: 'single',
+    youtubeUrl: 'https://www.youtube.com/watch?v=egWC1lk_fpw&list=OLAK5uy_mOCiYjFpqGdz6p8ZG8LcTpDz6G8IgeXRY',
+    thumbnail: fleurDeLysCover.url,
+    date: '2026-02-15',
+  },
   {
     id: 'mix-01',
     title: 'FAFREDDO FREESTYLE',
