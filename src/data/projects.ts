@@ -11,8 +11,6 @@ import morpheus83RecitCover from '@/assets/morpheus-83recit.jpg';
 import toraLostDoveCover from '@/assets/tora-lost-dove.jpg';
 import toraShineCover from '@/assets/tora-shine.jpg';
 import morpheusEtincelleCover from '@/assets/morpheus-etincelle.jpg';
-import fafreddoCover from '@/assets/fafreddo-cover.jpeg.asset.json';
-import fleurDeLysCover from '@/assets/fleur-de-lys-cover.jpeg.asset.json';
 
 export interface Project {
   id: string;
@@ -121,7 +119,7 @@ const unsortedMixProjects: MixProject[] = [
     artist: 'Calmé Zuu',
     type: 'single',
     youtubeUrl: 'https://www.youtube.com/watch?v=egWC1lk_fpw&list=OLAK5uy_mOCiYjFpqGdz6p8ZG8LcTpDz6G8IgeXRY',
-    thumbnail: fafreddoCover.url,
+    thumbnail: '/FAFR%20COVER.jpeg',
     date: '2026-03-01',
   },
   {
@@ -130,7 +128,7 @@ const unsortedMixProjects: MixProject[] = [
     artist: 'Bakaliv',
     type: 'single',
     youtubeUrl: 'https://www.youtube.com/watch?si=GYkb8JIeru03qBlS&v=rqt3DxkxKjA&feature=youtu.be',
-    thumbnail: fleurDeLysCover.url,
+    thumbnail: '/F2L.jpg',
     date: '2026-02-15',
   },
   {
