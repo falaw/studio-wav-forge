@@ -115,6 +115,15 @@ export const soundDesignProjects: Project[] = [
 
 const unsortedMixProjects: MixProject[] = [
   {
+    id: 'mix-15',
+    title: 'BABAR TAPE vol.1',
+    artist: 'Calmé Zuu',
+    type: 'playlist',
+    youtubeUrl: 'https://www.youtube.com/watch?v=RVWpTAn6-mE&list=OLAK5uy_kxwIFv79BSLgJpSTDGbAqLLuUCU58v0S8',
+    thumbnail: babarTapeCover.url,
+    date: '2026-04-01',
+  },
+  {
     id: 'mix-13',
     title: 'FAFREDDO',
     artist: 'Calmé Zuu',
