@@ -11,6 +11,7 @@ import morpheus83RecitCover from '@/assets/morpheus-83recit.jpg';
 import toraLostDoveCover from '@/assets/tora-lost-dove.jpg';
 import toraShineCover from '@/assets/tora-shine.jpg';
 import morpheusEtincelleCover from '@/assets/morpheus-etincelle.jpg';
+import babarTapeCover from '@/assets/babar-tape-vol1-cover.png.asset.json';
 
 export interface Project {
   id: string;
@@ -113,6 +114,15 @@ export const soundDesignProjects: Project[] = [
 ];
 
 const unsortedMixProjects: MixProject[] = [
+  {
+    id: 'mix-15',
+    title: 'BABAR TAPE vol.1',
+    artist: 'Calmé Zuu',
+    type: 'playlist',
+    youtubeUrl: 'https://www.youtube.com/watch?v=RVWpTAn6-mE&list=OLAK5uy_kxwIFv79BSLgJpSTDGbAqLLuUCU58v0S8',
+    thumbnail: babarTapeCover.url,
+    date: '2026-04-01',
+  },
   {
     id: 'mix-13',
     title: 'FAFREDDO',
