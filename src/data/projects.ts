@@ -11,6 +11,7 @@ import morpheus83RecitCover from '@/assets/morpheus-83recit.jpg';
 import toraLostDoveCover from '@/assets/tora-lost-dove.jpg';
 import toraShineCover from '@/assets/tora-shine.jpg';
 import morpheusEtincelleCover from '@/assets/morpheus-etincelle.jpg';
+import babarTapeCover from '@/assets/babar-tape-vol1-cover.png.asset.json';
 
 export interface Project {
   id: string;
