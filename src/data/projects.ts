@@ -129,7 +129,7 @@ const unsortedMixProjects: MixProject[] = [
     artist: 'Calmé Zuu',
     type: 'single',
     youtubeUrl: 'https://www.youtube.com/watch?v=egWC1lk_fpw&list=OLAK5uy_mOCiYjFpqGdz6p8ZG8LcTpDz6G8IgeXRY&pp=0gcJCfMCOCosWNin',
-    thumbnail: fafreddoNewCover.url,
+    thumbnail: '/FAFR COVER.jpg',
     date: '2026-03-01',
   },
   {
