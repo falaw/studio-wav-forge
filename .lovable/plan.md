@@ -1,22 +1,21 @@
 ## Objectif
-Ajouter un nouveau projet **BABAR TAPE vol.1** de Calmé Zuu dans la catégorie 2026 du catalogue MIX/MASTER, avec l'image de couverture uploadée.
+Mettre à jour le projet **FAFREDDO** de Calmé Zuu dans la section MIX/MASTER (catégorie 2026) avec un nouveau lien d'écoute YouTube et une nouvelle image de couverture.
 
 ## Étapes
 
-1. **Ajouter l'image de couverture**
-   - Créer un pointeur CDN via `lovable-assets create` depuis `/mnt/user-uploads/image.png` → `src/assets/babar-tape-vol1-cover.png.asset.json`.
+1. **Créer le pointeur CDN de la nouvelle cover**
+   - Uploader l'image `user-uploads://ab67616d00001e02cbc0c8f943eafbae8e5d23f3.jpg` via `lovable-assets`.
+   - Générer le pointeur `src/assets/fafreddo-cover.png.asset.json` (ou `.jpg` selon le format d'origine).
 
 2. **Modifier `src/data/projects.ts`**
-   - Importer le pointeur `babarTapeCover` depuis `@/assets/babar-tape-vol1-cover.png.asset.json`.
-   - Ajouter dans `unsortedMixProjects` une nouvelle entrée `mix-15` :
-     - `title: 'BABAR TAPE vol.1'`
-     - `artist: 'Calmé Zuu'`
-     - `type: 'playlist'` (car c'est une tape/playlist YouTube → badge EP affiché)
-     - `youtubeUrl: 'https://www.youtube.com/watch?v=RVWpTAn6-mE&list=OLAK5uy_kxwIFv79BSLgJpSTDGbAqLLuUCU58v0S8'`
-     - `thumbnail: babarTapeCover.url`
-     - `date: '2026-04-01'` (postérieur aux autres 2026 pour apparaître en premier)
+   - Pour le projet `id: 'mix-13'` (`FAFREDDO` de Calmé Zuu) :
+     - Remplacer `youtubeUrl` par : `https://www.youtube.com/watch?v=egWC1lk_fpw&list=OLAK5uy_mOCiYjFpqGdz6p8ZG8LcTpDz6G8IgeXRY&pp=0gcJCfMCOCosWNin`
+     - Remplacer `thumbnail` par l'URL du pointeur CDN créé à l'étape 1.
+
+3. **Vérifier le rendu**
+   - S'assurer que le build passe (`bun run build`).
+   - Confirmer visuellement dans la preview que la carte FAFREDDO affiche la nouvelle cover et pointe vers le bon lien.
 
 ## Détails techniques
-- La catégorie **2026** existe déjà dans `MixSection.tsx` via le groupement automatique par année (`groupByYear`) : aucun changement structurel nécessaire.
-- Le tri décroissant par date placera BABAR TAPE en tête du bloc 2026.
-- Le style, l'accordéon et les interactions (hover, badge EP, animations Framer Motion) restent identiques au reste du catalogue.
+- La catégorie 2026 et le tri existent déjà ; aucune modification structurelle nécessaire.
+- L'image d'origine `public/FAFR COVER.jpeg` et son éventuel pointeur CDN précédent peuvent être laissés en place ou nettoyés si non référencés ailleurs.
